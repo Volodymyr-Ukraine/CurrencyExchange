@@ -31,6 +31,8 @@
 		F5206C4022D8371600FA3E6E /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */; };
 		F5213BD722D86FC800DBD2BA /* PBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BD522D86FC800DBD2BA /* PBCell.swift */; };
 		F5213BD822D86FC800DBD2BA /* PBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5213BD622D86FC800DBD2BA /* PBCell.xib */; };
+		F5213BDA22D9083100DBD2BA /* VerticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BD922D9083100DBD2BA /* VerticalView.swift */; };
+		F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BDF22D9CB1400DBD2BA /* Styles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		F5213BD522D86FC800DBD2BA /* PBCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCell.swift; sourceTree = "<group>"; };
 		F5213BD622D86FC800DBD2BA /* PBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PBCell.xib; sourceTree = "<group>"; };
+		F5213BD922D9083100DBD2BA /* VerticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalView.swift; sourceTree = "<group>"; };
+		F5213BDF22D9CB1400DBD2BA /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				F5206C1022D6EBBE00FA3E6E /* VerticalViewController.swift */,
+				F5213BDF22D9CB1400DBD2BA /* Styles.swift */,
+				F5213BD922D9083100DBD2BA /* VerticalView.swift */,
 				F5206C3D22D8371600FA3E6E /* CalendarViewController.swift */,
 				F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */,
 				F5213BD522D86FC800DBD2BA /* PBCell.swift */,
@@ -162,16 +168,32 @@
 		F5206C2622D7125F00FA3E6E /* CurrenciesData */ = {
 			isa = PBXGroup;
 			children = (
-				F5206C1E22D700A800FA3E6E /* CurrenciesData.swift */,
-				F5206C1C22D6FF3600FA3E6E /* CurrencyData.swift */,
-				F5206C2D22D78ADD00FA3E6E /* CurrencyName.swift */,
+				F5213BDC22D9091200DBD2BA /* Structures */,
 				F5206C2222D707D100FA3E6E /* ReadJSON.swift */,
+				F5213BDE22D9094100DBD2BA /* RawData */,
 				F5206C1A22D6F3CE00FA3E6E /* CurrencyModel.swift */,
-				F5206C1222D6EE3F00FA3E6E /* CurrensyRawJSON.json */,
-				F5206C2B22D7704C00FA3E6E /* CurrencyNamesRuJSON.json */,
 				F5206C2022D7078200FA3E6E /* DecoderJSON.swift */,
 			);
 			path = CurrenciesData;
+			sourceTree = "<group>";
+		};
+		F5213BDC22D9091200DBD2BA /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				F5206C1E22D700A800FA3E6E /* CurrenciesData.swift */,
+				F5206C1C22D6FF3600FA3E6E /* CurrencyData.swift */,
+				F5206C2D22D78ADD00FA3E6E /* CurrencyName.swift */,
+			);
+			name = Structures;
+			sourceTree = "<group>";
+		};
+		F5213BDE22D9094100DBD2BA /* RawData */ = {
+			isa = PBXGroup;
+			children = (
+				F5206C1222D6EE3F00FA3E6E /* CurrensyRawJSON.json */,
+				F5206C2B22D7704C00FA3E6E /* CurrencyNamesRuJSON.json */,
+			);
+			name = RawData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +338,8 @@
 				F5206C1122D6EBBE00FA3E6E /* VerticalViewController.swift in Sources */,
 				F5213BD722D86FC800DBD2BA /* PBCell.swift in Sources */,
 				F5206C1622D6F02800FA3E6E /* CurrencyPBTableViewController.swift in Sources */,
+				F5213BDA22D9083100DBD2BA /* VerticalView.swift in Sources */,
+				F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */,
 				F5206C3122D7CB5E00FA3E6E /* NBUCell.swift in Sources */,
 				F5206C2E22D78ADD00FA3E6E /* CurrencyName.swift in Sources */,
 				F5206BFC22D66EB800FA3E6E /* AppDelegate.swift in Sources */,
