@@ -24,8 +24,8 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Properties
     
     private var model: CurrencyModel?
-    private var exchangeValuesArray: [CurrencyData] = []
-    private var currenciesNames: [CurrencyName] = []
+    //private var exchangeValuesArray: [CurrencyData] = []
+    //private var currenciesNames: [CurrencyName] = []
     
     // MARK: -
     // MARK: Init and Deinit
@@ -38,14 +38,6 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         self.CurrencyPBTable.dataSource = self
         
         self.model = CurrencyModel()
-        if let exchangeArray = self.model!.data?.exchangeRate {
-            // print(exchangeArray)
-            self.exchangeValuesArray = exchangeArray
-        } else {
-            print("some error in reading ExchangeValuesArray")
-            return
-        }
-        self.currenciesNames = self.model!.nameCurrency
         
         self.CurrencyPBTable.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
         self.CurrencyNBUTable.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
@@ -55,16 +47,13 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Table View Delegats
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let model = self.model else {
+            return 1
+        }
         if tableView == CurrencyPBTable {
-            let count = self.exchangeValuesArray.count
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.purchaseRate != nil)
-            }
-            return filteredData.count
+            return model.dataPBCells.count
         } else if tableView == CurrencyNBUTable {
-            return self.exchangeValuesArray.filter{ currency in
-                return currency.currency != nil
-                }.count
+            return model.dataNBUCells.count
         }
         return 1
     }
@@ -80,29 +69,36 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == CurrencyPBTable {
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.purchaseRate != nil) && (currency.currency != nil)
+            guard let model = self.model else {
+                return UITableViewCell()
             }
-            let cellData = filteredData[indexPath.item]
+            guard indexPath.item < model.dataPBCells.count else {
+                return UITableViewCell()
+            }
+            let cellInfo = model.dataPBCells[indexPath.item]
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PBCell") as? PBCell {
-                cell.currencyLabel.text = cellData.currency
-                cell.currencyType = cellData.currency
-                cell.buyingLabel.text = "\(cellData.purchaseRate ?? 0)"
-                cell.sellingLabel.text = "\(cellData.saleRate ?? 0)"
+                cell.currencyLabel.text = cellInfo.currency
+                cell.currencyType = cellInfo.currency // ToDo: deprecated
+                cell.buyingLabel.text = cellInfo.buying
+                cell.sellingLabel.text = cellInfo.selling
                 return cell
             }
         } else if tableView == CurrencyNBUTable {
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.currency != nil)
+            guard let model = self.model else {
+                return UITableViewCell()
             }
-            let cellData = filteredData[indexPath.item]
+            guard indexPath.item < model.dataNBUCells.count else {
+                return UITableViewCell()
+            }
+            let cellInfo = model.dataNBUCells[indexPath.item]
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NBUCell") as? NBUCell {
-                cell.currencyNameLabel.text = currenciesNames.filter{ currency in
-                    return currency.attr == (cellData.currency ?? "")
-                }.first?.name ?? "not found"
-                cell.valueLabel.text = "\(cellData.purchaseRateNB)"
-                cell.countLabel.text = "1 UAH"
-                cell.currencyAttr = cellData.currency ?? "???"
+                cell.currencyNameLabel.text = cellInfo.currencyName
+                cell.valueLabel.text = cellInfo.value
+                cell.countLabel.text = cellInfo.count
+                cell.currencyAttr = cellInfo.currency
+                cell.backgroundColor = ((indexPath.item % 2) == 0) ? colorWhiteCell : colorGreenCell
                 return cell
             } else {return UITableViewCell()}
             
@@ -113,40 +109,31 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == CurrencyPBTable {
-            guard let cell = self.CurrencyPBTable.cellForRow(at: indexPath) as? PBCell else {
+            guard let model = self.model else {
                 return
             }
-            let currentAttr = cell.currencyType ?? "???"
-            
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.currency != nil)
+            guard indexPath.item < model.dataPBCells.count else {
+                return
             }
-            let itemIndex = filteredData.firstIndex{ currency in
-                return currency.currency == currentAttr
-            } ?? 1
-            var newIndexPath = indexPath
-            newIndexPath.item = itemIndex
-            self.CurrencyNBUTable.selectRow(at: newIndexPath, animated: true, scrollPosition: .middle)
+            guard let cellJump = model.dataPBCells[indexPath.item].jumpTo else {
+                return
+            }
+            self.CurrencyNBUTable.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
         if tableView == CurrencyNBUTable {
-            guard let cell = self.CurrencyNBUTable.cellForRow(at: indexPath) as? NBUCell else {
+            guard let model = self.model else {
                 return
             }
-            let currentAttr = cell.currencyAttr
-            
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.purchaseRate != nil)
-            }
-            let itemIndex = filteredData.firstIndex{ currency in
-                return currency.currency == currentAttr
-                }
-            if itemIndex == nil {
-                self.CurrencyPBTable.selectRow(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .none)
-                self.CurrencyPBTable.deselectRow(at: IndexPath(item: 1, section: 0), animated: false)
+            guard indexPath.item < model.dataNBUCells.count else {
                 return
             }
-            let newIndexPath = IndexPath(item: itemIndex!, section: 0)
-            self.CurrencyPBTable.selectRow(at: newIndexPath, animated: true, scrollPosition: .middle)
+            guard let cellJump = model.dataNBUCells[indexPath.item].jumpTo else {
+                self.CurrencyNBUTable.deselectRow(at: IndexPath(item: indexPath.item, section: 0), animated: true)
+                self.CurrencyPBTable.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .none)
+                self.CurrencyPBTable.deselectRow(at:  IndexPath(item: 0, section: 0), animated: false)
+                return
+            }
+            self.CurrencyPBTable.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
     }
     
