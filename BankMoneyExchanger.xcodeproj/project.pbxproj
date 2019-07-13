@@ -33,6 +33,7 @@
 		F5213BD822D86FC800DBD2BA /* PBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5213BD622D86FC800DBD2BA /* PBCell.xib */; };
 		F5213BDA22D9083100DBD2BA /* VerticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BD922D9083100DBD2BA /* VerticalView.swift */; };
 		F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BDF22D9CB1400DBD2BA /* Styles.swift */; };
+		F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE122D9ECB700DBD2BA /* Optionals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		F5213BD622D86FC800DBD2BA /* PBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PBCell.xib; sourceTree = "<group>"; };
 		F5213BD922D9083100DBD2BA /* VerticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalView.swift; sourceTree = "<group>"; };
 		F5213BDF22D9CB1400DBD2BA /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		F5213BE122D9ECB700DBD2BA /* Optionals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optionals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				F5206C0F22D6EB3700FA3E6E /* AppCoordinator */,
 				F5206C2622D7125F00FA3E6E /* CurrenciesData */,
 				F5206BFF22D66EB800FA3E6E /* Main.storyboard */,
+				F5213BE322D9ECC100DBD2BA /* Extensions */,
 				F5206C0222D66EC100FA3E6E /* Assets.xcassets */,
 				F5206C0422D66EC100FA3E6E /* LaunchScreen.storyboard */,
 				F5206C0722D66EC100FA3E6E /* Info.plist */,
@@ -143,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				F5206C1022D6EBBE00FA3E6E /* VerticalViewController.swift */,
-				F5213BDF22D9CB1400DBD2BA /* Styles.swift */,
 				F5213BD922D9083100DBD2BA /* VerticalView.swift */,
+				F5213BDF22D9CB1400DBD2BA /* Styles.swift */,
 				F5206C3D22D8371600FA3E6E /* CalendarViewController.swift */,
 				F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */,
 				F5213BD522D86FC800DBD2BA /* PBCell.swift */,
@@ -194,6 +197,14 @@
 				F5206C2B22D7704C00FA3E6E /* CurrencyNamesRuJSON.json */,
 			);
 			name = RawData;
+			sourceTree = "<group>";
+		};
+		F5213BE322D9ECC100DBD2BA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F5213BE122D9ECB700DBD2BA /* Optionals.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +351,7 @@
 				F5206C1622D6F02800FA3E6E /* CurrencyPBTableViewController.swift in Sources */,
 				F5213BDA22D9083100DBD2BA /* VerticalView.swift in Sources */,
 				F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */,
+				F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */,
 				F5206C3122D7CB5E00FA3E6E /* NBUCell.swift in Sources */,
 				F5206C2E22D78ADD00FA3E6E /* CurrencyName.swift in Sources */,
 				F5206BFC22D66EB800FA3E6E /* AppDelegate.swift in Sources */,
