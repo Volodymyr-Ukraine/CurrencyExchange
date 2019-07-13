@@ -140,45 +140,8 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: -
     // MARK: Methods
     
-    @IBAction func calendarButton(_ sender: Any) {
-        //popover()
-    }
-    @IBAction func secondCalendarButton(_ sender: Any) {
-       // popover()
-    }
     
-    override func viewWillLayoutSubviews() {
-        /* self.CurrencyPBTable.snp.makeConstraints{ (make) -> () in
-            make.width.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.height.lessThanOrEqualToSuperview().dividedBy(3)
-            make.top.equalTo(self.oneCalendarView.snp.bottom).offset(70)
-        }
-        self.CurrencyNBUTable.snp.makeConstraints{ (make) -> () in
-            make.width.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.height.lessThanOrEqualToSuperview().dividedBy(3)
-            make.bottom.equalToSuperview().offset(50)
-        } // */
-    }
-    
-    func popover() {
-        let actionController = UIAlertController(title: " ", message: " ", preferredStyle: .alert)
-        
-        let data = UIDatePicker.init(frame: CGRect(x:0, y: 0, width: 270, height: 80))
-        data.maximumDate = Date(timeIntervalSinceNow: 0)
-        let time = TimeInterval(exactly: -2*(365*24*60*60))
-        data.minimumDate = Date(timeIntervalSinceNow: time ?? -5000)
-        data.datePickerMode = .date
-        actionController.view.addSubview(data)
-        
-        let popover = actionController.popoverPresentationController
-        popover?.sourceView = view
-        //popover?.sourceRect = CGRect(x: 0, y: 0, width: 300, height: 500)
-        present(actionController, animated: true){
-            
-        }
-    }
+
     
 }
 

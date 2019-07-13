@@ -16,14 +16,10 @@ class VerticalView: UIView {
     @IBOutlet var CurrencyPBTable: UITableView?
     @IBOutlet var CurrencyNBUTable: UITableView?
     @IBOutlet var calendar: UIDatePicker?
+    @IBOutlet weak var oneCalendarView: CalendarView!
+    @IBOutlet weak var otherCalendarView: CalendarView!
     
-    public var showCalendar: ( (VerticalView) -> () ) = {view in
-        guard view.calendar != nil else {
-            return
-        }
-        view.calendar?.isHidden = false
-        view.calendar?.backgroundColor = .white
-    }
+    
     
     public var hideCalendar: ( (VerticalView) -> () ) = {view in
         guard view.calendar != nil else {
@@ -43,13 +39,20 @@ class VerticalView: UIView {
     }
     
     @IBAction func otherCalendarButton(_ sender: Any) {
-        showCalendar(self)
+        showCalendar()
     }
     
     @IBAction func oneCalendarButton(_ sender: Any) {
-        showCalendar(self)
+        showCalendar()
     }
     
+    public func showCalendar() {
+        guard self.calendar != nil else {
+            return
+        }
+        self.calendar?.isHidden = false
+        self.calendar?.backgroundColor = .white
+    }
     
 
 }

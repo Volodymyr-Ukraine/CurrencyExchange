@@ -28,12 +28,12 @@
 		F5206C3122D7CB5E00FA3E6E /* NBUCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C2F22D7CB5D00FA3E6E /* NBUCell.swift */; };
 		F5206C3222D7CB5E00FA3E6E /* NBUCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5206C3022D7CB5E00FA3E6E /* NBUCell.xib */; };
 		F5206C3F22D8371600FA3E6E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C3D22D8371600FA3E6E /* CalendarViewController.swift */; };
-		F5206C4022D8371600FA3E6E /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */; };
 		F5213BD722D86FC800DBD2BA /* PBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BD522D86FC800DBD2BA /* PBCell.swift */; };
 		F5213BD822D86FC800DBD2BA /* PBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5213BD622D86FC800DBD2BA /* PBCell.xib */; };
 		F5213BDA22D9083100DBD2BA /* VerticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BD922D9083100DBD2BA /* VerticalView.swift */; };
 		F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BDF22D9CB1400DBD2BA /* Styles.swift */; };
 		F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE122D9ECB700DBD2BA /* Optionals.swift */; };
+		F5213BE722DA0E6E00DBD2BA /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,12 +62,12 @@
 		F5206C2F22D7CB5D00FA3E6E /* NBUCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBUCell.swift; sourceTree = "<group>"; };
 		F5206C3022D7CB5E00FA3E6E /* NBUCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NBUCell.xib; sourceTree = "<group>"; };
 		F5206C3D22D8371600FA3E6E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		F5213BD522D86FC800DBD2BA /* PBCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBCell.swift; sourceTree = "<group>"; };
 		F5213BD622D86FC800DBD2BA /* PBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PBCell.xib; sourceTree = "<group>"; };
 		F5213BD922D9083100DBD2BA /* VerticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalView.swift; sourceTree = "<group>"; };
 		F5213BDF22D9CB1400DBD2BA /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		F5213BE122D9ECB700DBD2BA /* Optionals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optionals.swift; sourceTree = "<group>"; };
+		F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 				F5213BD922D9083100DBD2BA /* VerticalView.swift */,
 				F5213BDF22D9CB1400DBD2BA /* Styles.swift */,
 				F5206C3D22D8371600FA3E6E /* CalendarViewController.swift */,
-				F5206C3E22D8371600FA3E6E /* CalendarViewController.xib */,
+				F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */,
 				F5213BD522D86FC800DBD2BA /* PBCell.swift */,
 				F5213BD622D86FC800DBD2BA /* PBCell.xib */,
 				F5206C2F22D7CB5D00FA3E6E /* NBUCell.swift */,
@@ -271,7 +271,6 @@
 				F5206C3222D7CB5E00FA3E6E /* NBUCell.xib in Resources */,
 				F5206C0622D66EC100FA3E6E /* LaunchScreen.storyboard in Resources */,
 				F5206C0322D66EC100FA3E6E /* Assets.xcassets in Resources */,
-				F5206C4022D8371600FA3E6E /* CalendarViewController.xib in Resources */,
 				F5206C1322D6EE3F00FA3E6E /* CurrensyRawJSON.json in Resources */,
 				F5206C0122D66EB800FA3E6E /* Main.storyboard in Resources */,
 				F5206C2C22D7704D00FA3E6E /* CurrencyNamesRuJSON.json in Resources */,
@@ -353,6 +352,7 @@
 				F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */,
 				F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */,
 				F5206C3122D7CB5E00FA3E6E /* NBUCell.swift in Sources */,
+				F5213BE722DA0E6E00DBD2BA /* CalendarView.swift in Sources */,
 				F5206C2E22D78ADD00FA3E6E /* CurrencyName.swift in Sources */,
 				F5206BFC22D66EB800FA3E6E /* AppDelegate.swift in Sources */,
 				F5206C0E22D6E57900FA3E6E /* Coordinator.swift in Sources */,
