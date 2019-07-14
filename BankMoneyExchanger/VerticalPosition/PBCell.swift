@@ -13,11 +13,9 @@ class PBCell: UITableViewCell {
     // MARK: -
     // MARK: Properties
     
-    @IBOutlet public var currencyLabel: UILabel! = UILabel()
-    @IBOutlet public var buyingLabel: UILabel! = UILabel()
-    @IBOutlet public var sellingLabel: UILabel! = UILabel()
-    
-    public var currencyType: String?
+    @IBOutlet public var currencyLabel: UILabel?//! = UILabel()
+    @IBOutlet public var buyingLabel: UILabel?//! = UILabel()
+    @IBOutlet public var sellingLabel: UILabel?//! = UILabel()
     
     // MARK: -
     // MARK: Init and Deinit
@@ -40,6 +38,21 @@ class PBCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    public func changeData(_ currency: String, _ buying: String, _ selling: String) {
+        guard let cur = self.currencyLabel else {
+            return
+        }
+        cur.text = currency
+        guard let buy = self.buyingLabel else {
+            return
+        }
+        buy.text = buying
+        guard let sel = self.sellingLabel else {
+            return
+        }
+        sel.text = selling
     }
     
 }

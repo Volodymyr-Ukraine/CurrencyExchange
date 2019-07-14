@@ -82,12 +82,13 @@ class CurrencyModel {
             print("there is no filteredData in  preparePBcells()")
             return
         }
+        self.dataPBCells = []
         filteredData?.forEach{ currency in
             let cell: CellPB = CellPB(currency: currency.currency ?? "!!!",
                     buying: "\(currency.purchaseRate ?? 0)",
                     selling: "\(currency.saleRate ?? 0)",
                     jumpTo: nil)
-            dataPBCells.append(cell)
+            self.dataPBCells.append(cell)
         }
     }
     
@@ -104,6 +105,7 @@ class CurrencyModel {
             print("there is no filteredData in  prepareNBUcells()")
             return
         }
+        self.dataNBUCells = []
         filteredData?.forEach{ currency in
             let curAtr = currency.currency ?? " "
             let currencyName: String = self.nameCurrency.filter{ curr in
@@ -114,7 +116,7 @@ class CurrencyModel {
                             value: "\(currency.purchaseRateNB)",
                             count: "1 UAH",
                             jumpTo: nil)
-            dataNBUCells.append(cell)
+            self.dataNBUCells.append(cell)
         }
     }
     
@@ -132,25 +134,32 @@ class CurrencyModel {
         }
     }
     
-    public func reloadData(on date: Date) {
+    public func reloadData(on date: Date, refresh: @escaping ()->()) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        
-        //let url = "https://api.privatbank.ua/p24api/exchange_rates?json&date=\(formatter.string(from: date))"
         let dateString = formatter.string(from: date)
-        Alamofire.request("https://api.privatbank.ua/p24api/exchange_rates", method: .get, parameters: ["json" : "", "date" : dateString]).responseJSON{ response in
+        Alamofire.request("https://api.privatbank.ua/p24api/exchange_rates", method: .get, parameters: ["json" : "", "date" : dateString]).responseString{ [weak self] response in
+            guard let this = self else {
+                return
+            }
             switch response.result {
             case .success:
                 //print(response.request)
                 //print(response.result)
                 //print(response.value)
-                guard let rawJSON = response.value else {return}
+                guard let rawJSON = response.value else {
+                    return
+                }
+                
                 let decoderNames = JSONDecoder()
                 do {
-                    self.nameCurrency = try decoderNames.decode([CurrencyName].self, from: rawJSON.data(using: .utf8)!)
+                    this.data = try decoderNames.decode(CurrenciesData.self, from: rawJSON.data(using: .utf8)!)
                 } catch {
                     print("error in decoding JSON")
                 }
+                //print(this.nameCurrency)
+                this.prepareCells()
+                refresh()
             case .failure:
                 print(response)
             }

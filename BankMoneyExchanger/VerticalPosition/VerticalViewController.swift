@@ -15,6 +15,7 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Properties
     
     private var model: CurrencyModel?
+    
     //private var exchangeValuesArray: [CurrencyData] = []
     //private var currenciesNames: [CurrencyName] = []
     
@@ -76,36 +77,30 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let viewForce = self.view as? VerticalView else {
             return UITableViewCell()
         }
+        
+        guard let model = self.model else {
+            return UITableViewCell()
+        }
+        
         if tableView == viewForce.currencyPBTable {
-            guard let model = self.model else {
-                return UITableViewCell()
-            }
             guard indexPath.item < model.dataPBCells.count else {
                 return UITableViewCell()
             }
             let cellInfo = model.dataPBCells[indexPath.item]
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PBCell") as? PBCell {
-                cell.currencyLabel.text = cellInfo.currency
-                cell.currencyType = cellInfo.currency // ToDo: deprecated
-                cell.buyingLabel.text = cellInfo.buying
-                cell.sellingLabel.text = cellInfo.selling
+                cell.changeData(cellInfo.currency, cellInfo.buying, cellInfo.selling)
                 return cell
             }
         } else if tableView == viewForce.currencyNBUTable {
-            guard let model = self.model else {
-                return UITableViewCell()
-            }
+            
             guard indexPath.item < model.dataNBUCells.count else {
                 return UITableViewCell()
             }
             let cellInfo = model.dataNBUCells[indexPath.item]
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NBUCell") as? NBUCell {
-                cell.currencyNameLabel.text = cellInfo.currencyName
-                cell.valueLabel.text = cellInfo.value
-                cell.countLabel.text = cellInfo.count
-                cell.currencyAttr = cellInfo.currency
+                cell.changeData(cellInfo.currencyName, cellInfo.value, cellInfo.count)
                 cell.backgroundColor = ((indexPath.item % 2) == 0) ? colorWhiteCell : colorGreenCell
                 return cell
             } else {
@@ -119,10 +114,10 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let viewForce = self.view as? VerticalView else {
             return
         }
+        guard let model = self.model else {
+            return
+        }
         if tableView == viewForce.currencyPBTable {
-            guard let model = self.model else {
-                return
-            }
             guard indexPath.item < model.dataPBCells.count else {
                 return
             }
@@ -135,9 +130,6 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
             tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
         if tableView == viewForce.currencyNBUTable {
-            guard let model = self.model else {
-                return
-            }
             guard indexPath.item < model.dataNBUCells.count else {
                 return
             }
@@ -231,7 +223,18 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let model = self.model else {
             return
         }
-        model.reloadData(on: choosenDate)
+        
+        guard let tablePB = viewForced.currencyPBTable else {
+            return
+        }
+        guard let tableNBU = viewForced.currencyNBUTable else {
+            return
+        }
+        
+        model.reloadData(on: choosenDate) {
+                tablePB.reloadData()
+                tableNBU.reloadData()
+        }
     }
 
     

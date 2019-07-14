@@ -19,15 +19,5 @@ class VerticalView: UIView {
     @IBOutlet var hideCallendarButton: UIButton?
     @IBOutlet var oneCalendarView: CalendarView?
     @IBOutlet var otherCalendarView: CalendarView?
-    
-    
-    
-    public var hideCalendar: ( (VerticalView) -> () ) = {view in
-        guard view.calendar != nil else {
-            return
-        }
-        view.calendar?.isHidden = true
-        
-    }
 
 }
