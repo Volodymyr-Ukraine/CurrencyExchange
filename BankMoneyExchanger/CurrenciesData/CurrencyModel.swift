@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class CurrencyModel {
     struct CellPB {
@@ -129,5 +130,32 @@ class CurrencyModel {
                 self.dataNBUCells[indexCellNBU!].jumpTo = n
             }
         }
+    }
+    
+    public func reloadData(on date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        
+        //let url = "https://api.privatbank.ua/p24api/exchange_rates?json&date=\(formatter.string(from: date))"
+        let dateString = formatter.string(from: date)
+        Alamofire.request("https://api.privatbank.ua/p24api/exchange_rates", method: .get, parameters: ["json" : "", "date" : dateString]).responseJSON{ response in
+            switch response.result {
+            case .success:
+                //print(response.request)
+                //print(response.result)
+                //print(response.value)
+                guard let rawJSON = response.value else {return}
+                let decoderNames = JSONDecoder()
+                do {
+                    self.nameCurrency = try decoderNames.decode([CurrencyName].self, from: rawJSON.data(using: .utf8)!)
+                } catch {
+                    print("error in decoding JSON")
+                }
+            case .failure:
+                print(response)
+            }
+            
+        }
+        
     }
 }

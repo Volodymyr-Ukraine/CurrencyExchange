@@ -228,7 +228,10 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         oneDate.text = formatter.string(from: choosenDate)
         otherDate.text = oneDate.text
         
-        
+        guard let model = self.model else {
+            return
+        }
+        model.reloadData(on: choosenDate)
     }
 
     

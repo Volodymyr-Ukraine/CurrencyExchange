@@ -12,16 +12,12 @@
 		F5206C0122D66EB800FA3E6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5206BFF22D66EB800FA3E6E /* Main.storyboard */; };
 		F5206C0322D66EC100FA3E6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5206C0222D66EC100FA3E6E /* Assets.xcassets */; };
 		F5206C0622D66EC100FA3E6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5206C0422D66EC100FA3E6E /* LaunchScreen.storyboard */; };
-		F5206C0E22D6E57900FA3E6E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C0D22D6E57800FA3E6E /* Coordinator.swift */; };
 		F5206C1122D6EBBE00FA3E6E /* VerticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C1022D6EBBE00FA3E6E /* VerticalViewController.swift */; };
 		F5206C1322D6EE3F00FA3E6E /* CurrensyRawJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = F5206C1222D6EE3F00FA3E6E /* CurrensyRawJSON.json */; };
-		F5206C1622D6F02800FA3E6E /* CurrencyPBTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C1522D6F02800FA3E6E /* CurrencyPBTableViewController.swift */; };
-		F5206C1922D6F39B00FA3E6E /* CurrencyPBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C1822D6F39B00FA3E6E /* CurrencyPBModel.swift */; };
 		F5206C1B22D6F3CE00FA3E6E /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C1A22D6F3CE00FA3E6E /* CurrencyModel.swift */; };
 		F5206C1D22D6FF3600FA3E6E /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C1C22D6FF3600FA3E6E /* CurrencyData.swift */; };
 		F5206C1F22D700A800FA3E6E /* CurrenciesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C1E22D700A800FA3E6E /* CurrenciesData.swift */; };
 		F5206C2122D7078300FA3E6E /* DecoderJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C2022D7078200FA3E6E /* DecoderJSON.swift */; };
-		F5206C2322D707D100FA3E6E /* ReadJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C2222D707D100FA3E6E /* ReadJSON.swift */; };
 		F5206C2522D70DD400FA3E6E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F5206C2422D70DD300FA3E6E /* Podfile */; };
 		F5206C2C22D7704D00FA3E6E /* CurrencyNamesRuJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = F5206C2B22D7704C00FA3E6E /* CurrencyNamesRuJSON.json */; };
 		F5206C2E22D78ADD00FA3E6E /* CurrencyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5206C2D22D78ADD00FA3E6E /* CurrencyName.swift */; };
@@ -46,16 +42,12 @@
 		F5206C0222D66EC100FA3E6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5206C0522D66EC100FA3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5206C0722D66EC100FA3E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F5206C0D22D6E57800FA3E6E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F5206C1022D6EBBE00FA3E6E /* VerticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VerticalViewController.swift; path = BankMoneyExchanger/VerticalPosition/VerticalViewController.swift; sourceTree = SOURCE_ROOT; };
 		F5206C1222D6EE3F00FA3E6E /* CurrensyRawJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = CurrensyRawJSON.json; path = BankMoneyExchanger/CurrenciesData/CurrensyRawJSON.json; sourceTree = SOURCE_ROOT; };
-		F5206C1522D6F02800FA3E6E /* CurrencyPBTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPBTableViewController.swift; sourceTree = "<group>"; };
-		F5206C1822D6F39B00FA3E6E /* CurrencyPBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPBModel.swift; sourceTree = "<group>"; };
 		F5206C1A22D6F3CE00FA3E6E /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		F5206C1C22D6FF3600FA3E6E /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		F5206C1E22D700A800FA3E6E /* CurrenciesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesData.swift; sourceTree = "<group>"; };
 		F5206C2022D7078200FA3E6E /* DecoderJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderJSON.swift; sourceTree = "<group>"; };
-		F5206C2222D707D100FA3E6E /* ReadJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadJSON.swift; sourceTree = "<group>"; };
 		F5206C2422D70DD300FA3E6E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		F5206C2B22D7704C00FA3E6E /* CurrencyNamesRuJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrencyNamesRuJSON.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		F5206C2D22D78ADD00FA3E6E /* CurrencyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyName.swift; sourceTree = "<group>"; };
@@ -137,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				F5206BFB22D66EB800FA3E6E /* AppDelegate.swift */,
-				F5206C0D22D6E57800FA3E6E /* Coordinator.swift */,
 			);
 			path = AppCoordinator;
 			sourceTree = "<group>";
@@ -154,25 +145,14 @@
 				F5213BD622D86FC800DBD2BA /* PBCell.xib */,
 				F5206C2F22D7CB5D00FA3E6E /* NBUCell.swift */,
 				F5206C3022D7CB5E00FA3E6E /* NBUCell.xib */,
-				F5206C1722D6F11200FA3E6E /* PBTable (don't use due to lack of time) */,
 			);
 			path = VerticalPosition;
-			sourceTree = "<group>";
-		};
-		F5206C1722D6F11200FA3E6E /* PBTable (don't use due to lack of time) */ = {
-			isa = PBXGroup;
-			children = (
-				F5206C1522D6F02800FA3E6E /* CurrencyPBTableViewController.swift */,
-				F5206C1822D6F39B00FA3E6E /* CurrencyPBModel.swift */,
-			);
-			path = "PBTable (don't use due to lack of time)";
 			sourceTree = "<group>";
 		};
 		F5206C2622D7125F00FA3E6E /* CurrenciesData */ = {
 			isa = PBXGroup;
 			children = (
 				F5213BDC22D9091200DBD2BA /* Structures */,
-				F5206C2222D707D100FA3E6E /* ReadJSON.swift */,
 				F5213BDE22D9094100DBD2BA /* RawData */,
 				F5206C1A22D6F3CE00FA3E6E /* CurrencyModel.swift */,
 				F5206C2022D7078200FA3E6E /* DecoderJSON.swift */,
@@ -341,13 +321,10 @@
 				F5206C3F22D8371600FA3E6E /* CalendarViewController.swift in Sources */,
 				F5206C2122D7078300FA3E6E /* DecoderJSON.swift in Sources */,
 				F5206C1B22D6F3CE00FA3E6E /* CurrencyModel.swift in Sources */,
-				F5206C1922D6F39B00FA3E6E /* CurrencyPBModel.swift in Sources */,
-				F5206C2322D707D100FA3E6E /* ReadJSON.swift in Sources */,
 				F5206C1F22D700A800FA3E6E /* CurrenciesData.swift in Sources */,
 				F5206C1D22D6FF3600FA3E6E /* CurrencyData.swift in Sources */,
 				F5206C1122D6EBBE00FA3E6E /* VerticalViewController.swift in Sources */,
 				F5213BD722D86FC800DBD2BA /* PBCell.swift in Sources */,
-				F5206C1622D6F02800FA3E6E /* CurrencyPBTableViewController.swift in Sources */,
 				F5213BDA22D9083100DBD2BA /* VerticalView.swift in Sources */,
 				F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */,
 				F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */,
@@ -355,7 +332,6 @@
 				F5213BE722DA0E6E00DBD2BA /* CalendarView.swift in Sources */,
 				F5206C2E22D78ADD00FA3E6E /* CurrencyName.swift in Sources */,
 				F5206BFC22D66EB800FA3E6E /* AppDelegate.swift in Sources */,
-				F5206C0E22D6E57900FA3E6E /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
