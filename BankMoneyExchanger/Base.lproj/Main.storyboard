@@ -144,17 +144,23 @@
                                 <rect key="frame" x="232" y="139" width="162" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="otherCalendarButton:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="30W-7S-wb6"/>
+                                    <action selector="showOneCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vGO-1O-Oqu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-s2-WWo">
                                 <rect key="frame" x="232" y="509" width="162" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="oneCalendarButton:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="ysS-bD-LIE"/>
+                                    <action selector="showOtherCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJj-Y6-h6t"/>
                                 </connections>
                             </button>
-                            <datePicker hidden="YES" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQv-jh-KH8">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veO-kl-Srw" userLabel="HideCalendarButton">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <action selector="hideCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CGg-MH-CjN"/>
+                                </connections>
+                            </button>
+                            <datePicker hidden="YES" opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQv-jh-KH8">
                                 <rect key="frame" x="20" y="340" width="374" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -167,27 +173,25 @@
                                 <date key="maximumDate" timeIntervalSinceReferenceDate="597409200">
                                     <!--2019-12-07 11:00:00 +0000-->
                                 </date>
-                                <connections>
-                                    <action selector="choosenData:" destination="8bC-Xf-vdC" eventType="valueChanged" id="WCF-27-hIf"/>
-                                </connections>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="veO-kl-Srw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Fjl-xd-hlc"/>
+                            <constraint firstItem="veO-kl-Srw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HLj-NS-gwl"/>
+                            <constraint firstItem="veO-kl-Srw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aSC-Lo-SuQ"/>
+                            <constraint firstAttribute="bottom" secondItem="veO-kl-Srw" secondAttribute="bottom" id="jGI-gD-j35"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
-                            <outlet property="CurrencyNBUTable" destination="Wo0-fZ-c0d" id="Ezl-Tq-mIT"/>
-                            <outlet property="CurrencyPBTable" destination="aeY-V8-d4V" id="AAa-A2-5IG"/>
                             <outlet property="calendar" destination="KQv-jh-KH8" id="2dM-qu-pSH"/>
+                            <outlet property="currencyNBUTable" destination="Wo0-fZ-c0d" id="QUe-WI-tke"/>
+                            <outlet property="currencyPBTable" destination="aeY-V8-d4V" id="0xj-Fs-6Eu"/>
+                            <outlet property="hideCallendarButton" destination="veO-kl-Srw" id="JRb-EP-vVt"/>
                             <outlet property="oneCalendarView" destination="0aG-H7-gNP" id="KgS-i5-cEm"/>
                             <outlet property="otherCalendarView" destination="zQ0-hV-NCl" id="qjW-eW-NMY"/>
                         </connections>
                     </view>
-                    <connections>
-                        <outlet property="CurrencyNBUTable" destination="Wo0-fZ-c0d" id="hMC-GM-xAB"/>
-                        <outlet property="CurrencyPBTable" destination="aeY-V8-d4V" id="Ii2-qB-N4w"/>
-                        <outlet property="calendarView" destination="0aG-H7-gNP" id="pMA-gU-ufm"/>
-                        <outlet property="oneCalendarView" destination="0aG-H7-gNP" id="e1I-lm-rlO"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

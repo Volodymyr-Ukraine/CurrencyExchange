@@ -10,16 +10,7 @@ import UIKit
 import SnapKit
 
 class VerticalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    // MARK: -
-    // MARK: Outlets
-    
-    @IBOutlet weak var CurrencyPBTable: UITableView!
-    @IBOutlet weak var CurrencyNBUTable: UITableView!
-    @IBOutlet weak var calendarView: UIView!
-    @IBOutlet weak var oneCalendarView: UIView!
-    @IBOutlet weak var otherCalendarView: UIView!
-    
+
     // MARK: -
     // MARK: Properties
     
@@ -32,15 +23,21 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.CurrencyNBUTable.delegate = self
-        self.CurrencyNBUTable.dataSource = self
-        self.CurrencyPBTable.delegate = self
-        self.CurrencyPBTable.dataSource = self
-        
         self.model = CurrencyModel()
-        
-        self.CurrencyPBTable.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
-        self.CurrencyNBUTable.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
+        if let viewForced = self.view as? VerticalView {
+            if viewForced.currencyPBTable == nil {
+                viewForced.currencyPBTable = UITableView()
+            }
+            if viewForced.currencyNBUTable == nil {
+                viewForced.currencyNBUTable = UITableView()
+            }
+            viewForced.currencyNBUTable?.delegate = self
+            viewForced.currencyPBTable?.delegate = self
+            viewForced.currencyPBTable?.dataSource = self
+            viewForced.currencyNBUTable?.dataSource = self
+            viewForced.currencyPBTable?.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
+            viewForced.currencyNBUTable?.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
+        }
     }
     
     // MARK: -
@@ -50,25 +47,36 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let model = self.model else {
             return 1
         }
-        if tableView == CurrencyPBTable {
+        
+        guard let viewForce = self.view as? VerticalView else {
+            return 1
+        }
+        
+        if tableView == viewForce.currencyPBTable {
             return model.dataPBCells.count
-        } else if tableView == CurrencyNBUTable {
+        } else if tableView == viewForce.currencyNBUTable {
             return model.dataNBUCells.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == CurrencyPBTable {
+        guard let viewForce = self.view as? VerticalView else {
+            return 10
+        }
+        if tableView == viewForce.currencyPBTable {
             return 50
-        } else if tableView == CurrencyNBUTable {
+        } else if tableView == viewForce.currencyNBUTable {
             return 45
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == CurrencyPBTable {
+        guard let viewForce = self.view as? VerticalView else {
+            return UITableViewCell()
+        }
+        if tableView == viewForce.currencyPBTable {
             guard let model = self.model else {
                 return UITableViewCell()
             }
@@ -84,7 +92,7 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
                 cell.sellingLabel.text = cellInfo.selling
                 return cell
             }
-        } else if tableView == CurrencyNBUTable {
+        } else if tableView == viewForce.currencyNBUTable {
             guard let model = self.model else {
                 return UITableViewCell()
             }
@@ -100,15 +108,18 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
                 cell.currencyAttr = cellInfo.currency
                 cell.backgroundColor = ((indexPath.item % 2) == 0) ? colorWhiteCell : colorGreenCell
                 return cell
-            } else {return UITableViewCell()}
-            
-            
+            } else {
+                return UITableViewCell()
+            }
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == CurrencyPBTable {
+        guard let viewForce = self.view as? VerticalView else {
+            return
+        }
+        if tableView == viewForce.currencyPBTable {
             guard let model = self.model else {
                 return
             }
@@ -118,29 +129,107 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
             guard let cellJump = model.dataPBCells[indexPath.item].jumpTo else {
                 return
             }
-            self.CurrencyNBUTable.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
+            guard let tablePB = viewForce.currencyNBUTable else {
+                return
+            }
+            tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
-        if tableView == CurrencyNBUTable {
+        if tableView == viewForce.currencyNBUTable {
             guard let model = self.model else {
                 return
             }
             guard indexPath.item < model.dataNBUCells.count else {
                 return
             }
-            guard let cellJump = model.dataNBUCells[indexPath.item].jumpTo else {
-                self.CurrencyNBUTable.deselectRow(at: IndexPath(item: indexPath.item, section: 0), animated: true)
-                self.CurrencyPBTable.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .none)
-                self.CurrencyPBTable.deselectRow(at:  IndexPath(item: 0, section: 0), animated: false)
+            guard let tablePB = viewForce.currencyPBTable else {
                 return
             }
-            self.CurrencyPBTable.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
+            guard let cellJump = model.dataNBUCells[indexPath.item].jumpTo else {
+                guard let tableNBU = viewForce.currencyNBUTable else {
+                    return
+                }
+                tableNBU.deselectRow(at: IndexPath(item: indexPath.item, section: 0), animated: true)
+                tablePB.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .none)
+                tablePB.deselectRow(at:  IndexPath(item: 0, section: 0), animated: false)
+                return
+            }
+            tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
     }
     
     // MARK: -
+    // MARK: Actions
+    
+    @IBAction func showOneCalendarButton(_ sender: Any) {
+        showCalendar()
+    }
+    
+    @IBAction func showOtherCalendarButton(_ sender: Any) {
+        showCalendar()
+    }
+    
+    @IBAction func hideCalendarButton(_ sender: Any) {
+        hideCalendar()
+    }
+    
+    
+    // MARK: -
     // MARK: Methods
     
+    public func showCalendar() {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        guard let calendar = viewForced.calendar else {
+            return
+        }
+        calendar.isHidden = false
+        calendar.backgroundColor = .white
+        
+        guard let hideButton = viewForced.hideCallendarButton else {
+            return
+        }
+        hideButton.isHidden = false
+    }
     
+    public func hideCalendar() {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        guard let calendar = viewForced.calendar else {
+            return
+        }
+        calendar.isHidden = true
+        guard let hideButton = viewForced.hideCallendarButton else {
+            return
+        }
+        hideButton.isHidden = true
+        refreshDate(choosenDate: calendar.date)
+    }
+    
+    private func refreshDate(choosenDate: Date) {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        guard let oneCalendar = viewForced.oneCalendarView else {
+            return
+        }
+        guard let oneDate = oneCalendar.dateLabel else {
+            return
+        }
+        guard let otherCalendar = viewForced.otherCalendarView else {
+            return
+        }
+        guard let otherDate = otherCalendar.dateLabel else {
+            return
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        oneDate.text = formatter.string(from: choosenDate)
+        otherDate.text = oneDate.text
+        
+        
+    }
 
     
 }
