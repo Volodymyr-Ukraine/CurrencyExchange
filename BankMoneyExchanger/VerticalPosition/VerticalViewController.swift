@@ -11,6 +11,8 @@ import SnapKit
 
 class VerticalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    
+
     // MARK: -
     // MARK: Properties
     
@@ -38,6 +40,14 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
             viewForced.currencyNBUTable?.dataSource = self
             viewForced.currencyPBTable?.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
             viewForced.currencyNBUTable?.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
+            guard let calendar = viewForced.calendar else {
+                return
+            }
+            let day = 24*60*60
+            calendar.maximumDate = Date.init(timeIntervalSinceNow: TimeInterval(-day))
+            
+            let year = 365*day
+            calendar.minimumDate = Date.init(timeIntervalSinceNow: TimeInterval(-4*year))
         }
     }
     

@@ -18,151 +18,189 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-ZR-LqE">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Курсы валют" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-5Z-0gs">
-                                        <rect key="frame" x="120" y="39" width="175" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hyst_32" translatesAutoresizingMaskIntoConstraints="NO" id="Z3J-Xd-jeH">
-                                        <rect key="frame" x="360" y="52" width="32" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.4055827856" green="0.60240018370000004" blue="0.54654216769999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aeY-V8-d4V">
-                                <rect key="frame" x="20" y="228" width="374" height="268"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PBCell" id="YbB-t4-IvF" customClass="PBCell" customModule="BankMoneyExchanger" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YbB-t4-IvF" id="VZn-wf-SJ1">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <sections/>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wo0-fZ-c0d">
-                                <rect key="frame" x="20" y="573" width="374" height="289"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PBCell" id="PSU-tu-6OE" customClass="PBCell" customModule="BankMoneyExchanger" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PSU-tu-6OE" id="fDo-fa-hZ1">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-6V-VMw">
-                                <rect key="frame" x="20" y="133" width="155" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="ПриватБанк">
-                                        <attributes>
-                                            <font key="NSFont" size="28" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJa-kx-Qz7">
-                                <rect key="frame" x="20" y="190" width="85" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Валюта">
-                                        <attributes>
-                                            <font key="NSFont" size="25" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKA-aN-dwR">
-                                <rect key="frame" x="159" y="190" width="96" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Покупка">
-                                        <attributes>
-                                            <font key="NSFont" size="25" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CM-iU-rPf">
-                                <rect key="frame" x="288" y="190" width="106" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Продажа">
-                                        <attributes>
-                                            <font key="NSFont" size="25" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyf-YA-Eou">
-                                <rect key="frame" x="20" y="520" width="190" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="НБУ">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="28"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0aG-H7-gNP" customClass="CalendarView" customModule="BankMoneyExchanger" customModuleProvider="target">
-                                <rect key="frame" x="232" y="133" width="162" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQ0-hV-NCl" customClass="CalendarView" customModule="BankMoneyExchanger" customModuleProvider="target">
-                                <rect key="frame" x="232" y="509" width="162" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfR-CZ-GWs">
-                                <rect key="frame" x="232" y="139" width="162" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="showOneCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vGO-1O-Oqu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-s2-WWo">
-                                <rect key="frame" x="232" y="509" width="162" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="showOtherCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJj-Y6-h6t"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veO-kl-Srw" userLabel="HideCalendarButton">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veO-kl-Srw" userLabel="HideCalendarButton">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="hideCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CGg-MH-CjN"/>
                                 </connections>
                             </button>
-                            <datePicker hidden="YES" opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQv-jh-KH8">
-                                <rect key="frame" x="20" y="340" width="374" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-KD-Mly" userLabel="ViewPB">
+                                <rect key="frame" x="0.0" y="75" width="414" height="373"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aG-H7-gNP" customClass="CalendarView" customModule="BankMoneyExchanger" customModuleProvider="target">
+                                        <rect key="frame" x="236" y="9" width="158" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="U1x-yo-3VK"/>
+                                            <constraint firstAttribute="width" constant="158" id="qEi-pF-cZB"/>
+                                        </constraints>
+                                    </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfR-CZ-GWs">
+                                        <rect key="frame" x="236" y="9" width="158" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="hLQ-aC-x74"/>
+                                            <constraint firstAttribute="width" constant="158" id="n2f-rZ-mil"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="showOneCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vGO-1O-Oqu"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aeY-V8-d4V">
+                                        <rect key="frame" x="0.0" y="75.5" width="414" height="297.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PBCell" id="YbB-t4-IvF" customClass="PBCell" customModule="BankMoneyExchanger" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YbB-t4-IvF" id="VZn-wf-SJ1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <sections/>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-6V-VMw">
+                                        <rect key="frame" x="15" y="10" width="154.5" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="TcQ-kq-54O"/>
+                                            <constraint firstAttribute="width" constant="154.5" id="ckS-kf-G5c"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="ПриватБанк">
+                                                <attributes>
+                                                    <font key="NSFont" size="28" name=".AppleSystemUIFont"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Валюта" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJa-kx-Qz7">
+                                        <rect key="frame" x="10" y="54" width="63" height="21.5"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Покупка" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKA-aN-dwR">
+                                        <rect key="frame" x="171.5" y="54" width="71" height="22"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Продажа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CM-iU-rPf">
+                                        <rect key="frame" x="325" y="54" width="79" height="21.5"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="sfR-CZ-GWs" firstAttribute="top" secondItem="0aG-H7-gNP" secondAttribute="top" id="0dn-vJ-QaZ"/>
+                                    <constraint firstItem="aeY-V8-d4V" firstAttribute="leading" secondItem="TT7-KD-Mly" secondAttribute="leading" id="2Uj-dy-ASg"/>
+                                    <constraint firstItem="sCn-6V-VMw" firstAttribute="leading" secondItem="TT7-KD-Mly" secondAttribute="leading" constant="15" id="4tB-dH-uEQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="8CM-iU-rPf" secondAttribute="trailing" constant="10" id="9Zq-tS-aB2"/>
+                                    <constraint firstItem="8CM-iU-rPf" firstAttribute="centerY" secondItem="xJa-kx-Qz7" secondAttribute="centerY" id="CRj-aM-0S7"/>
+                                    <constraint firstItem="xJa-kx-Qz7" firstAttribute="top" secondItem="sCn-6V-VMw" secondAttribute="bottom" constant="10" id="JLN-h2-8CB"/>
+                                    <constraint firstAttribute="trailing" secondItem="aeY-V8-d4V" secondAttribute="trailing" id="QBT-KA-3b0"/>
+                                    <constraint firstItem="aeY-V8-d4V" firstAttribute="bottom" secondItem="TT7-KD-Mly" secondAttribute="bottom" id="Trg-BR-KmV"/>
+                                    <constraint firstItem="sCn-6V-VMw" firstAttribute="top" secondItem="TT7-KD-Mly" secondAttribute="top" constant="10" id="Zlh-pA-hdW"/>
+                                    <constraint firstItem="0aG-H7-gNP" firstAttribute="centerY" secondItem="sCn-6V-VMw" secondAttribute="centerY" id="ay8-5a-1HY"/>
+                                    <constraint firstItem="GKA-aN-dwR" firstAttribute="centerY" secondItem="xJa-kx-Qz7" secondAttribute="centerY" id="heC-aA-RuU"/>
+                                    <constraint firstItem="0aG-H7-gNP" firstAttribute="leading" secondItem="sfR-CZ-GWs" secondAttribute="leading" id="kj8-cd-Veu"/>
+                                    <constraint firstItem="xJa-kx-Qz7" firstAttribute="bottom" secondItem="aeY-V8-d4V" secondAttribute="top" id="mU0-yz-O8g"/>
+                                    <constraint firstItem="GKA-aN-dwR" firstAttribute="centerX" secondItem="TT7-KD-Mly" secondAttribute="centerX" id="nUu-9M-dQn"/>
+                                    <constraint firstItem="xJa-kx-Qz7" firstAttribute="leading" secondItem="TT7-KD-Mly" secondAttribute="leading" constant="10" id="nqX-CK-N3L"/>
+                                    <constraint firstAttribute="trailing" secondItem="0aG-H7-gNP" secondAttribute="trailing" constant="20" id="rY7-X8-PvU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-ZR-LqE" userLabel="ViewTop">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курсы валют" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZf-5Z-0gs">
+                                        <rect key="frame" x="120" y="35" width="181" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hyst_32" translatesAutoresizingMaskIntoConstraints="NO" id="Z3J-Xd-jeH">
+                                        <rect key="frame" x="360" y="39" width="24" height="24"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="7Q8-JA-hX8"/>
+                                            <constraint firstAttribute="width" constant="24" id="jef-S5-5Rd"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.39607843139999999" green="0.59607843140000005" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Z3J-Xd-jeH" secondAttribute="trailing" constant="30" id="PXG-6f-EUy"/>
+                                    <constraint firstItem="VZf-5Z-0gs" firstAttribute="centerX" secondItem="XA5-ZR-LqE" secondAttribute="centerX" constant="3.5" id="Ty1-xh-QSR"/>
+                                    <constraint firstAttribute="height" constant="75" id="WPT-Vg-raw"/>
+                                    <constraint firstItem="Z3J-Xd-jeH" firstAttribute="top" secondItem="XA5-ZR-LqE" secondAttribute="top" constant="39" id="c4S-xV-Gwo"/>
+                                    <constraint firstItem="VZf-5Z-0gs" firstAttribute="top" secondItem="XA5-ZR-LqE" secondAttribute="top" constant="35" id="rfh-Cc-AYv"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iz-oj-0Ue" userLabel="ViewNBU">
+                                <rect key="frame" x="0.0" y="448" width="414" height="414"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wo0-fZ-c0d">
+                                        <rect key="frame" x="0.0" y="47.5" width="414" height="366.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PBCell" id="PSU-tu-6OE" customClass="PBCell" customModule="BankMoneyExchanger" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PSU-tu-6OE" id="fDo-fa-hZ1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyf-YA-Eou">
+                                        <rect key="frame" x="20" y="10" width="56.5" height="33"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="НБУ">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="28"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQ0-hV-NCl" customClass="CalendarView" customModule="BankMoneyExchanger" customModuleProvider="target">
+                                        <rect key="frame" x="236" y="11.5" width="158" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="158" id="SQu-sV-lUt"/>
+                                            <constraint firstAttribute="height" constant="36" id="da4-wS-Jic"/>
+                                        </constraints>
+                                    </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-s2-WWo">
+                                        <rect key="frame" x="236" y="14.5" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="showOtherCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJj-Y6-h6t"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zQ0-hV-NCl" secondAttribute="trailing" constant="20" id="0D3-VN-fla"/>
+                                    <constraint firstItem="Yyf-YA-Eou" firstAttribute="top" secondItem="7iz-oj-0Ue" secondAttribute="top" constant="10" id="Gtr-AO-xp1"/>
+                                    <constraint firstItem="Wo0-fZ-c0d" firstAttribute="leading" secondItem="7iz-oj-0Ue" secondAttribute="leading" id="PVw-6p-ufg"/>
+                                    <constraint firstItem="zQ0-hV-NCl" firstAttribute="leading" secondItem="ba4-s2-WWo" secondAttribute="leading" id="RpO-gJ-YGh"/>
+                                    <constraint firstItem="Yyf-YA-Eou" firstAttribute="leading" secondItem="7iz-oj-0Ue" secondAttribute="leading" constant="20" id="Xfd-Gh-P2n"/>
+                                    <constraint firstItem="zQ0-hV-NCl" firstAttribute="centerY" secondItem="Yyf-YA-Eou" secondAttribute="centerY" constant="3" id="b2A-VR-aYX"/>
+                                    <constraint firstItem="ba4-s2-WWo" firstAttribute="centerY" secondItem="zQ0-hV-NCl" secondAttribute="centerY" id="lNN-8W-0ka"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wo0-fZ-c0d" secondAttribute="bottom" id="lYG-qs-yc9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wo0-fZ-c0d" secondAttribute="trailing" id="m5v-ud-AFS"/>
+                                    <constraint firstItem="Wo0-fZ-c0d" firstAttribute="top" secondItem="zQ0-hV-NCl" secondAttribute="bottom" id="or5-dn-zC0"/>
+                                </constraints>
+                            </view>
+                            <datePicker hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQv-jh-KH8">
+                                <rect key="frame" x="47" y="340" width="320" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <date key="date" timeIntervalSinceReferenceDate="584701192.80347598">
                                     <!--2019-07-13 08:59:52 +0000-->
@@ -177,10 +215,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="veO-kl-Srw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Fjl-xd-hlc"/>
-                            <constraint firstItem="veO-kl-Srw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HLj-NS-gwl"/>
-                            <constraint firstItem="veO-kl-Srw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aSC-Lo-SuQ"/>
-                            <constraint firstAttribute="bottom" secondItem="veO-kl-Srw" secondAttribute="bottom" id="jGI-gD-j35"/>
+                            <constraint firstItem="KQv-jh-KH8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6Fd-s9-rg9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iz-oj-0Ue" secondAttribute="trailing" id="Eh8-56-9JK"/>
+                            <constraint firstItem="7iz-oj-0Ue" firstAttribute="top" secondItem="TT7-KD-Mly" secondAttribute="bottom" id="IgM-Ez-Y5B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TT7-KD-Mly" secondAttribute="trailing" id="Jq0-gf-nbA"/>
+                            <constraint firstItem="XA5-ZR-LqE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hQt-mM-U26"/>
+                            <constraint firstAttribute="centerY" secondItem="TT7-KD-Mly" secondAttribute="bottom" id="hil-08-KLf"/>
+                            <constraint firstItem="XA5-ZR-LqE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iUp-8V-EqT"/>
+                            <constraint firstItem="TT7-KD-Mly" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ifI-sr-uvo"/>
+                            <constraint firstItem="XA5-ZR-LqE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oyf-ez-KuV"/>
+                            <constraint firstItem="KQv-jh-KH8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p5x-IS-0up"/>
+                            <constraint firstItem="7iz-oj-0Ue" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q90-vD-gq4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7iz-oj-0Ue" secondAttribute="bottom" id="rvx-tA-FOz"/>
+                            <constraint firstItem="TT7-KD-Mly" firstAttribute="top" secondItem="XA5-ZR-LqE" secondAttribute="bottom" id="zqV-0X-53A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>

@@ -24,7 +24,10 @@ class CalendarView: UIView {
         self.calendarButton?.setImage(image, for: .normal)
         //self.calendarButton.addTarget(self, action: #selector(onDataPick), for: .touchDown)
         self.dateLabel = UILabel()
-        self.dateLabel?.text = "10.07.2019"
+        self.dateLabel?.attributedText = NSAttributedString(string: "10.07.2019", attributes:
+            [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        //self.dateLabel?.text = "10.07.2019"
+        self.dateLabel?.textColor = colorGoldFont
         self.dateLabel?.frame = CGRect(x: 0,y: 0,width: 50,height: 50)
         if self.dateLabel != nil {
             self.addSubview(self.dateLabel!)
@@ -51,6 +54,8 @@ class CalendarView: UIView {
             self.calendarButton?.snp.makeConstraints{ (make) -> Void in
                 make.right.equalTo(self.dateLabel?.snp.left ?? self.snp.left).offset(-5)
                 make.centerY.equalToSuperview()
+                make.height.equalTo(24)
+                make.width.equalTo(24)
             }
         }
     }
