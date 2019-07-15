@@ -18,13 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veO-kl-Srw" userLabel="HideCalendarButton">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="hideCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CGg-MH-CjN"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-KD-Mly" userLabel="ViewPB">
                                 <rect key="frame" x="0.0" y="75" width="414" height="373"/>
                                 <subviews>
@@ -179,7 +172,11 @@
                                         </constraints>
                                     </containerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-s2-WWo">
-                                        <rect key="frame" x="236" y="14.5" width="30" height="30"/>
+                                        <rect key="frame" x="236" y="11.5" width="158" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="0PB-dF-u9Q"/>
+                                            <constraint firstAttribute="width" constant="158" id="InJ-p8-trg"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="showOtherCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cJj-Y6-h6t"/>
                                         </connections>
@@ -190,7 +187,7 @@
                                     <constraint firstAttribute="trailing" secondItem="zQ0-hV-NCl" secondAttribute="trailing" constant="20" id="0D3-VN-fla"/>
                                     <constraint firstItem="Yyf-YA-Eou" firstAttribute="top" secondItem="7iz-oj-0Ue" secondAttribute="top" constant="10" id="Gtr-AO-xp1"/>
                                     <constraint firstItem="Wo0-fZ-c0d" firstAttribute="leading" secondItem="7iz-oj-0Ue" secondAttribute="leading" id="PVw-6p-ufg"/>
-                                    <constraint firstItem="zQ0-hV-NCl" firstAttribute="leading" secondItem="ba4-s2-WWo" secondAttribute="leading" id="RpO-gJ-YGh"/>
+                                    <constraint firstItem="zQ0-hV-NCl" firstAttribute="centerX" secondItem="ba4-s2-WWo" secondAttribute="centerX" id="RpO-gJ-YGh"/>
                                     <constraint firstItem="Yyf-YA-Eou" firstAttribute="leading" secondItem="7iz-oj-0Ue" secondAttribute="leading" constant="20" id="Xfd-Gh-P2n"/>
                                     <constraint firstItem="zQ0-hV-NCl" firstAttribute="centerY" secondItem="Yyf-YA-Eou" secondAttribute="centerY" constant="3" id="b2A-VR-aYX"/>
                                     <constraint firstItem="ba4-s2-WWo" firstAttribute="centerY" secondItem="zQ0-hV-NCl" secondAttribute="centerY" id="lNN-8W-0ka"/>
@@ -199,6 +196,12 @@
                                     <constraint firstItem="Wo0-fZ-c0d" firstAttribute="top" secondItem="zQ0-hV-NCl" secondAttribute="bottom" id="or5-dn-zC0"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veO-kl-Srw" userLabel="HideCalendarButton">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <action selector="hideCalendarButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CGg-MH-CjN"/>
+                                </connections>
+                            </button>
                             <datePicker hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQv-jh-KH8">
                                 <rect key="frame" x="47" y="340" width="320" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -219,19 +222,26 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7iz-oj-0Ue" secondAttribute="trailing" id="Eh8-56-9JK"/>
                             <constraint firstItem="7iz-oj-0Ue" firstAttribute="top" secondItem="TT7-KD-Mly" secondAttribute="bottom" id="IgM-Ez-Y5B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TT7-KD-Mly" secondAttribute="trailing" id="Jq0-gf-nbA"/>
+                            <constraint firstAttribute="bottom" secondItem="veO-kl-Srw" secondAttribute="bottom" id="Kon-TR-gFP"/>
+                            <constraint firstItem="veO-kl-Srw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WoC-Mj-AV3"/>
                             <constraint firstItem="XA5-ZR-LqE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hQt-mM-U26"/>
                             <constraint firstAttribute="centerY" secondItem="TT7-KD-Mly" secondAttribute="bottom" id="hil-08-KLf"/>
                             <constraint firstItem="XA5-ZR-LqE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iUp-8V-EqT"/>
                             <constraint firstItem="TT7-KD-Mly" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ifI-sr-uvo"/>
+                            <constraint firstItem="veO-kl-Srw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jKq-6F-poc"/>
                             <constraint firstItem="XA5-ZR-LqE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oyf-ez-KuV"/>
                             <constraint firstItem="KQv-jh-KH8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p5x-IS-0up"/>
                             <constraint firstItem="7iz-oj-0Ue" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q90-vD-gq4"/>
+                            <constraint firstItem="veO-kl-Srw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qim-nJ-HCZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7iz-oj-0Ue" secondAttribute="bottom" id="rvx-tA-FOz"/>
                             <constraint firstItem="TT7-KD-Mly" firstAttribute="top" secondItem="XA5-ZR-LqE" secondAttribute="bottom" id="zqV-0X-53A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outlet property="calendar" destination="KQv-jh-KH8" id="2dM-qu-pSH"/>
+                            <outlet property="commonViewNBU" destination="7iz-oj-0Ue" id="vVP-FD-2SU"/>
+                            <outlet property="commonViewPB" destination="TT7-KD-Mly" id="z89-Ob-z4S"/>
+                            <outlet property="commonViewTop" destination="XA5-ZR-LqE" id="nsh-8J-ZN7"/>
                             <outlet property="currencyNBUTable" destination="Wo0-fZ-c0d" id="QUe-WI-tke"/>
                             <outlet property="currencyPBTable" destination="aeY-V8-d4V" id="0xj-Fs-6Eu"/>
                             <outlet property="hideCallendarButton" destination="veO-kl-Srw" id="JRb-EP-vVt"/>

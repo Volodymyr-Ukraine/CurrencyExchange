@@ -48,6 +48,7 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
             
             let year = 365*day
             calendar.minimumDate = Date.init(timeIntervalSinceNow: TimeInterval(-4*year))
+            viewForced.rotate()
         }
     }
     
@@ -178,6 +179,13 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: -
     // MARK: Methods
     
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        viewForced.rotate()
+    }
+    
     public func showCalendar() {
         guard let viewForced = self.view as? VerticalView else {
             return
@@ -240,7 +248,6 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let tableNBU = viewForced.currencyNBUTable else {
             return
         }
-        
         model.reloadData(on: choosenDate) {
                 tablePB.reloadData()
                 tableNBU.reloadData()

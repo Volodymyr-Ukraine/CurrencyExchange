@@ -48,7 +48,7 @@
 		F5206C1C22D6FF3600FA3E6E /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		F5206C1E22D700A800FA3E6E /* CurrenciesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesData.swift; sourceTree = "<group>"; };
 		F5206C2022D7078200FA3E6E /* DecoderJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderJSON.swift; sourceTree = "<group>"; };
-		F5206C2422D70DD300FA3E6E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		F5206C2422D70DD300FA3E6E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F5206C2B22D7704C00FA3E6E /* CurrencyNamesRuJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrencyNamesRuJSON.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		F5206C2D22D78ADD00FA3E6E /* CurrencyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyName.swift; sourceTree = "<group>"; };
 		F5206C2F22D7CB5D00FA3E6E /* NBUCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBUCell.swift; sourceTree = "<group>"; };
