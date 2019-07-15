@@ -19,28 +19,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-n6-d06">
-                        <rect key="frame" x="16" y="12" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-n6-d06">
+                        <rect key="frame" x="10" y="8" width="59" height="28"/>
+                        <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7u-ip-9mP">
-                        <rect key="frame" x="218" y="11" width="86" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7u-ip-9mP">
+                        <rect key="frame" x="251" y="8" width="59" height="28"/>
+                        <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dj-to-uLj">
-                        <rect key="frame" x="111" y="12" width="99" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dj-to-uLj">
+                        <rect key="frame" x="130.5" y="8" width="59" height="28"/>
+                        <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="I7u-ip-9mP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9pF-p7-JX6"/>
+                    <constraint firstItem="UcP-n6-d06" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="EZa-8D-d5W"/>
+                    <constraint firstAttribute="trailing" secondItem="I7u-ip-9mP" secondAttribute="trailing" constant="10" id="Eo2-R3-pDZ"/>
+                    <constraint firstItem="UcP-n6-d06" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SgP-3W-HNt"/>
+                    <constraint firstItem="4dj-to-uLj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dSh-MO-2hx"/>
+                    <constraint firstItem="4dj-to-uLj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sw8-H5-jSe"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

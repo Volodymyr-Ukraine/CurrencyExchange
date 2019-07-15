@@ -13,11 +13,9 @@ class NBUCell: UITableViewCell {
     // MARK: -
     // MARK: Properties
 
-    @IBOutlet weak var currencyNameLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
-    
-    public var currencyAttr: String = ""
+    @IBOutlet var currencyNameLabel: UILabel?
+    @IBOutlet var valueLabel: UILabel?
+    @IBOutlet var countLabel: UILabel?
     
     // MARK: -
     // MARK: Init and Deinit
@@ -34,4 +32,12 @@ class NBUCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    public func changeData(_ currency: String, _ value: String, _ count: String) {
+        guard let cur = self.currencyNameLabel else {return}
+        cur.text = currency
+        guard let val = self.valueLabel else {return}
+        val.text = value
+        guard let cnt = self.countLabel else {return}
+        cnt.text = count
+    }
 }

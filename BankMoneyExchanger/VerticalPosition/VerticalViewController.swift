@@ -10,188 +10,250 @@ import UIKit
 import SnapKit
 
 class VerticalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
     
-    // MARK: -
-    // MARK: Outlets
-    
-    @IBOutlet weak var CurrencyPBTable: UITableView!
-    @IBOutlet weak var CurrencyNBUTable: UITableView!
-    @IBOutlet weak var calendarView: UIView!
-    @IBOutlet weak var oneCalendarView: UIView!
-    @IBOutlet weak var otherCalendarView: UIView!
-    
+
     // MARK: -
     // MARK: Properties
     
     private var model: CurrencyModel?
-    private var exchangeValuesArray: [CurrencyData] = []
-    private var currenciesNames: [CurrencyName] = []
+    
+    //private var exchangeValuesArray: [CurrencyData] = []
+    //private var currenciesNames: [CurrencyName] = []
     
     // MARK: -
     // MARK: Init and Deinit
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.CurrencyNBUTable.delegate = self
-        self.CurrencyNBUTable.dataSource = self
-        self.CurrencyPBTable.delegate = self
-        self.CurrencyPBTable.dataSource = self
-        
         self.model = CurrencyModel()
-        if let exchangeArray = self.model!.data?.exchangeRate {
-            // print(exchangeArray)
-            self.exchangeValuesArray = exchangeArray
-        } else {
-            print("some error in reading ExchangeValuesArray")
-            return
+        if let viewForced = self.view as? VerticalView {
+            if viewForced.currencyPBTable == nil {
+                viewForced.currencyPBTable = UITableView()
+            }
+            if viewForced.currencyNBUTable == nil {
+                viewForced.currencyNBUTable = UITableView()
+            }
+            viewForced.currencyNBUTable?.delegate = self
+            viewForced.currencyPBTable?.delegate = self
+            viewForced.currencyPBTable?.dataSource = self
+            viewForced.currencyNBUTable?.dataSource = self
+            viewForced.currencyPBTable?.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
+            viewForced.currencyNBUTable?.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
+            guard let calendar = viewForced.calendar else {
+                return
+            }
+            let day = 24*60*60
+            calendar.maximumDate = Date.init(timeIntervalSinceNow: TimeInterval(-day))
+            
+            let year = 365*day
+            calendar.minimumDate = Date.init(timeIntervalSinceNow: TimeInterval(-4*year))
+            viewForced.rotate()
         }
-        self.currenciesNames = self.model!.nameCurrency
-        
-        self.CurrencyPBTable.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
-        self.CurrencyNBUTable.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
     }
     
     // MARK: -
     // MARK: Table View Delegats
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == CurrencyPBTable {
-            let count = self.exchangeValuesArray.count
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.purchaseRate != nil)
-            }
-            return filteredData.count
-        } else if tableView == CurrencyNBUTable {
-            return self.exchangeValuesArray.filter{ currency in
-                return currency.currency != nil
-                }.count
+        guard let model = self.model else {
+            return 1
+        }
+        
+        guard let viewForce = self.view as? VerticalView else {
+            return 1
+        }
+        
+        if tableView == viewForce.currencyPBTable {
+            return model.dataPBCells.count
+        } else if tableView == viewForce.currencyNBUTable {
+            return model.dataNBUCells.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == CurrencyPBTable {
+        guard let viewForce = self.view as? VerticalView else {
+            return 10
+        }
+        if tableView == viewForce.currencyPBTable {
             return 50
-        } else if tableView == CurrencyNBUTable {
+        } else if tableView == viewForce.currencyNBUTable {
             return 45
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == CurrencyPBTable {
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.purchaseRate != nil) && (currency.currency != nil)
+        guard let viewForce = self.view as? VerticalView else {
+            return UITableViewCell()
+        }
+        
+        guard let model = self.model else {
+            return UITableViewCell()
+        }
+        
+        if tableView == viewForce.currencyPBTable {
+            guard indexPath.item < model.dataPBCells.count else {
+                return UITableViewCell()
             }
-            let cellData = filteredData[indexPath.item]
+            let cellInfo = model.dataPBCells[indexPath.item]
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PBCell") as? PBCell {
-                cell.currencyLabel.text = cellData.currency
-                cell.currencyType = cellData.currency
-                cell.buyingLabel.text = "\(cellData.purchaseRate ?? 0)"
-                cell.sellingLabel.text = "\(cellData.saleRate ?? 0)"
+                cell.changeData(cellInfo.currency, cellInfo.buying, cellInfo.selling)
                 return cell
             }
-        } else if tableView == CurrencyNBUTable {
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.currency != nil)
+        } else if tableView == viewForce.currencyNBUTable {
+            
+            guard indexPath.item < model.dataNBUCells.count else {
+                return UITableViewCell()
             }
-            let cellData = filteredData[indexPath.item]
+            let cellInfo = model.dataNBUCells[indexPath.item]
+            
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NBUCell") as? NBUCell {
-                cell.currencyNameLabel.text = currenciesNames.filter{ currency in
-                    return currency.attr == (cellData.currency ?? "")
-                }.first?.name ?? "not found"
-                cell.valueLabel.text = "\(cellData.purchaseRateNB)"
-                cell.countLabel.text = "1 UAH"
-                cell.currencyAttr = cellData.currency ?? "???"
+                cell.changeData(cellInfo.currencyName, cellInfo.value, cellInfo.count)
+                cell.backgroundColor = ((indexPath.item % 2) == 0) ? colorWhiteCell : colorGreenCell
                 return cell
-            } else {return UITableViewCell()}
-            
-            
+            } else {
+                return UITableViewCell()
+            }
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == CurrencyPBTable {
-            guard let cell = self.CurrencyPBTable.cellForRow(at: indexPath) as? PBCell else {
-                return
-            }
-            let currentAttr = cell.currencyType ?? "???"
-            
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.currency != nil)
-            }
-            let itemIndex = filteredData.firstIndex{ currency in
-                return currency.currency == currentAttr
-            } ?? 1
-            var newIndexPath = indexPath
-            newIndexPath.item = itemIndex
-            self.CurrencyNBUTable.selectRow(at: newIndexPath, animated: true, scrollPosition: .middle)
+        guard let viewForce = self.view as? VerticalView else {
+            return
         }
-        if tableView == CurrencyNBUTable {
-            guard let cell = self.CurrencyNBUTable.cellForRow(at: indexPath) as? NBUCell else {
+        guard let model = self.model else {
+            return
+        }
+        if tableView == viewForce.currencyPBTable {
+            guard indexPath.item < model.dataPBCells.count else {
                 return
             }
-            let currentAttr = cell.currencyAttr
-            
-            let filteredData = self.exchangeValuesArray.filter{ currency in
-                return (currency.purchaseRate != nil)
+            guard let cellJump = model.dataPBCells[indexPath.item].jumpTo else {
+                return
             }
-            let itemIndex = filteredData.firstIndex{ currency in
-                return currency.currency == currentAttr
+            guard let tablePB = viewForce.currencyNBUTable else {
+                return
+            }
+            tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
+        }
+        if tableView == viewForce.currencyNBUTable {
+            guard indexPath.item < model.dataNBUCells.count else {
+                return
+            }
+            guard let tablePB = viewForce.currencyPBTable else {
+                return
+            }
+            guard let cellJump = model.dataNBUCells[indexPath.item].jumpTo else {
+                guard let tableNBU = viewForce.currencyNBUTable else {
+                    return
                 }
-            if itemIndex == nil {
-                self.CurrencyPBTable.selectRow(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .none)
-                self.CurrencyPBTable.deselectRow(at: IndexPath(item: 1, section: 0), animated: false)
+                tableNBU.deselectRow(at: IndexPath(item: indexPath.item, section: 0), animated: true)
+                tablePB.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .none)
+                tablePB.deselectRow(at:  IndexPath(item: 0, section: 0), animated: false)
                 return
             }
-            let newIndexPath = IndexPath(item: itemIndex!, section: 0)
-            self.CurrencyPBTable.selectRow(at: newIndexPath, animated: true, scrollPosition: .middle)
+            tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
     }
     
     // MARK: -
+    // MARK: Actions
+    
+    @IBAction func showOneCalendarButton(_ sender: Any) {
+        showCalendar()
+    }
+    
+    @IBAction func showOtherCalendarButton(_ sender: Any) {
+        showCalendar()
+    }
+    
+    @IBAction func hideCalendarButton(_ sender: Any) {
+        hideCalendar()
+    }
+    
+    
+    // MARK: -
     // MARK: Methods
     
-    @IBAction func calendarButton(_ sender: Any) {
-        //popover()
-    }
-    @IBAction func secondCalendarButton(_ sender: Any) {
-       // popover()
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        viewForced.rotate()
     }
     
-    override func viewWillLayoutSubviews() {
-        /* self.CurrencyPBTable.snp.makeConstraints{ (make) -> () in
-            make.width.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.height.lessThanOrEqualToSuperview().dividedBy(3)
-            make.top.equalTo(self.oneCalendarView.snp.bottom).offset(70)
+    public func showCalendar() {
+        guard let viewForced = self.view as? VerticalView else {
+            return
         }
-        self.CurrencyNBUTable.snp.makeConstraints{ (make) -> () in
-            make.width.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.height.lessThanOrEqualToSuperview().dividedBy(3)
-            make.bottom.equalToSuperview().offset(50)
-        } // */
+        guard let calendar = viewForced.calendar else {
+            return
+        }
+        calendar.isHidden = false
+        calendar.backgroundColor = .white
+        
+        guard let hideButton = viewForced.hideCallendarButton else {
+            return
+        }
+        hideButton.isHidden = false
     }
     
-    func popover() {
-        let actionController = UIAlertController(title: " ", message: " ", preferredStyle: .alert)
+    public func hideCalendar() {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        guard let calendar = viewForced.calendar else {
+            return
+        }
+        calendar.isHidden = true
+        guard let hideButton = viewForced.hideCallendarButton else {
+            return
+        }
+        hideButton.isHidden = true
+        refreshDate(choosenDate: calendar.date)
+    }
+    
+    private func refreshDate(choosenDate: Date) {
+        guard let viewForced = self.view as? VerticalView else {
+            return
+        }
+        guard let oneCalendar = viewForced.oneCalendarView else {
+            return
+        }
+        guard let oneDate = oneCalendar.dateLabel else {
+            return
+        }
+        guard let otherCalendar = viewForced.otherCalendarView else {
+            return
+        }
+        guard let otherDate = otherCalendar.dateLabel else {
+            return
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        oneDate.text = formatter.string(from: choosenDate)
+        otherDate.text = oneDate.text
         
-        let data = UIDatePicker.init(frame: CGRect(x:0, y: 0, width: 270, height: 80))
-        data.maximumDate = Date(timeIntervalSinceNow: 0)
-        let time = TimeInterval(exactly: -2*(365*24*60*60))
-        data.minimumDate = Date(timeIntervalSinceNow: time ?? -5000)
-        data.datePickerMode = .date
-        actionController.view.addSubview(data)
+        guard let model = self.model else {
+            return
+        }
         
-        let popover = actionController.popoverPresentationController
-        popover?.sourceView = view
-        //popover?.sourceRect = CGRect(x: 0, y: 0, width: 300, height: 500)
-        present(actionController, animated: true){
-            
+        guard let tablePB = viewForced.currencyPBTable else {
+            return
+        }
+        guard let tableNBU = viewForced.currencyNBUTable else {
+            return
+        }
+        model.reloadData(on: choosenDate) {
+                tablePB.reloadData()
+                tableNBU.reloadData()
         }
     }
+
     
 }
 

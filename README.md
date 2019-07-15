@@ -1,12 +1,12 @@
 # CurrencyExchange
 Some task is finished.
 
-Todo:
+Done:
 
-add dissapear of DataPicker after data choosing
+added dissapear of DataPicker after data choosing
 
-add http get request for a currencies info from bank
+added http get request for a currencies info from bank
 
-add horisontal controller
+added horisontal controller (in fact changed vertical controller for both states)
 
-modify constraints and element sizes for better design, check on other devices (development is for iPhone Xr)
+modify constraints and element sizes for better design, check on other devices (development is for iPhone Xr, checked by simulations on iPhone Xr and iPhone 6)
