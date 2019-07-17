@@ -11,16 +11,16 @@ import SnapKit
 
 class VerticalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
-
     // MARK: -
     // MARK: Properties
     
     private var model: CurrencyModel?
-    
-    //private var exchangeValuesArray: [CurrencyData] = []
-    //private var currenciesNames: [CurrencyName] = []
-    
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        get {
+            return UIInterfaceOrientationMask.all;
+        }
+    }
+
     // MARK: -
     // MARK: Init and Deinit
     

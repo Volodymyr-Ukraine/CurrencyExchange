@@ -40,21 +40,7 @@ class VerticalView: UIView {
             make.top.left.width.equalToSuperview()
             make.height.equalTo(75)
         }
-        if UIDevice.current.orientation.isPortrait {
-            pbView.snp.remakeConstraints{ (make) -> () in
-                make.top.equalTo(topView.snp.bottom)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview()
-                make.bottom.equalToSuperview().dividedBy(2)
-            }
-            nbuView.snp.remakeConstraints{(make) -> () in
-                make.top.equalTo(pbView.snp.bottom)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview()
-                make.bottom.equalToSuperview()
-                make.height.equalToSuperview().dividedBy(2)
-            }
-        } else if UIDevice.current.orientation.isLandscape {
+        if UIDevice.current.orientation.isLandscape {
             pbView.snp.remakeConstraints{ (make) -> () in
                 make.top.equalTo(topView.snp.bottom).offset(0)
                 make.left.equalToSuperview()
@@ -68,6 +54,20 @@ class VerticalView: UIView {
                 make.right.equalToSuperview()
                 make.bottom.equalToSuperview()
                 make.height.equalToSuperview().offset(-75)
+            }
+        } else {
+            pbView.snp.remakeConstraints{ (make) -> () in
+                make.top.equalTo(topView.snp.bottom)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview()
+                make.bottom.equalToSuperview().dividedBy(2)
+            }
+            nbuView.snp.remakeConstraints{(make) -> () in
+                make.top.equalTo(pbView.snp.bottom)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.height.equalToSuperview().dividedBy(2)
             }
         }
     }

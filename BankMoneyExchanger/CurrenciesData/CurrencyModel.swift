@@ -45,7 +45,6 @@ class CurrencyModel {
         } catch {
             print("error in decoding JSON")
         }
-    //print(data)
         let textCurrenyNames = self.pathToText(inputString: pathCurrencyNames)
         let decoderNames = JSONDecoder()
         do {
@@ -53,7 +52,6 @@ class CurrencyModel {
         } catch {
             print("error in decoding JSON")
         }
-    //print(nameCurrency)
         prepareCells()
     }
     
@@ -100,7 +98,7 @@ class CurrencyModel {
         }
         let filteredData = self.data?.exchangeRate.filter{ currency in
             return (currency.currency != nil)
-        } // todo - simplify
+        }
         if filteredData == nil {
             print("there is no filteredData in  prepareNBUcells()")
             return
@@ -111,10 +109,16 @@ class CurrencyModel {
             let currencyName: String = self.nameCurrency.filter{ curr in
                 return curr.attr == curAtr
             }.first?.name ?? "Unknown currency"
+            var count = 1
+            var value = currency.purchaseRateNB
+            while value < 10 {
+                value = value * 10
+                count = count * 10
+            }
             let cell: CellNBU = CellNBU(currencyName: currencyName,
                             currency: curAtr,
-                            value: "\(currency.purchaseRateNB)",
-                            count: "1 UAH",
+                            value: "\(value)",
+                            count: "\(count) UAH",
                             jumpTo: nil)
             self.dataNBUCells.append(cell)
         }
@@ -144,20 +148,15 @@ class CurrencyModel {
             }
             switch response.result {
             case .success:
-                //print(response.request)
-                //print(response.result)
-                //print(response.value)
                 guard let rawJSON = response.value else {
                     return
-                }
-                
+                }                
                 let decoderNames = JSONDecoder()
                 do {
                     this.data = try decoderNames.decode(CurrenciesData.self, from: rawJSON.data(using: .utf8)!)
                 } catch {
                     print("error in decoding JSON")
                 }
-                //print(this.nameCurrency)
                 this.prepareCells()
                 refresh()
             case .failure:
