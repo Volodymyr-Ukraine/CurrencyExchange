@@ -16,7 +16,6 @@ class CalendarViewController: UIViewController {
     
     public var viewCalendar: CalendarView?
  
-    
     // MARK: -
     // MARK: Init and Deinit
     
@@ -26,7 +25,6 @@ class CalendarViewController: UIViewController {
     }
     
     override func loadView() {
-        
         self.view = self.viewCalendar
     }
 

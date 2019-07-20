@@ -13,9 +13,9 @@ class PBCell: UITableViewCell {
     // MARK: -
     // MARK: Properties
     
-    @IBOutlet public var currencyLabel: UILabel?//! = UILabel()
-    @IBOutlet public var buyingLabel: UILabel?//! = UILabel()
-    @IBOutlet public var sellingLabel: UILabel?//! = UILabel()
+    @IBOutlet public var currencyLabel: UILabel?
+    @IBOutlet public var buyingLabel: UILabel?
+    @IBOutlet public var sellingLabel: UILabel?
     
     // MARK: -
     // MARK: Init and Deinit
@@ -25,12 +25,7 @@ class PBCell: UITableViewCell {
     }
     
     override func awakeFromNib() {
-        
-        //Bundle.main.loadNibNamed("PBCell", owner: self)
         super.awakeFromNib()
-        
-        //super.contentView.addSubview(currencyLabel)
-        // Initialization code
     }
     
     // MARK: -
@@ -41,18 +36,15 @@ class PBCell: UITableViewCell {
     }
     
     public func changeData(_ currency: String, _ buying: String, _ selling: String) {
-        guard let cur = self.currencyLabel else {
-            return
+        if let cur = self.currencyLabel {
+            cur.text = currency
         }
-        cur.text = currency
-        guard let buy = self.buyingLabel else {
-            return
+        if let buy = self.buyingLabel {
+            buy.text = buying
         }
-        buy.text = buying
-        guard let sel = self.sellingLabel else {
-            return
+        if let sel = self.sellingLabel {
+            sel.text = selling
         }
-        sel.text = selling
     }
     
 }

@@ -22,7 +22,6 @@ class NBUCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     // MARK: -
@@ -33,11 +32,14 @@ class NBUCell: UITableViewCell {
     }
     
     public func changeData(_ currency: String, _ value: String, _ count: String) {
-        guard let cur = self.currencyNameLabel else {return}
-        cur.text = currency
-        guard let val = self.valueLabel else {return}
-        val.text = value
-        guard let cnt = self.countLabel else {return}
-        cnt.text = count
+        if let cur = self.currencyNameLabel {
+            cur.text = currency
+        }
+        if let val = self.valueLabel {
+            val.text = value
+        }
+        if let cnt = self.countLabel {
+            cnt.text = count
+        }
     }
 }

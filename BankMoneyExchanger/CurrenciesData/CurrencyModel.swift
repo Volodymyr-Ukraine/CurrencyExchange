@@ -38,25 +38,24 @@ class CurrencyModel {
     // MARK: Init
     
     init() {
-        let text = self.pathToText(inputString: pathCurrency)
-        let decoder = JSONDecoder()
-        do {
-            self.data = try decoder.decode(CurrenciesData.self, from: text.data(using: .utf8)!)
-        } catch {
-            print("error in decoding JSON")
-        }
-        let textCurrenyNames = self.pathToText(inputString: pathCurrencyNames)
-        let decoderNames = JSONDecoder()
-        do {
-            self.nameCurrency = try decoderNames.decode([CurrencyName].self, from: textCurrenyNames.data(using: .utf8)!)
-        } catch {
-            print("error in decoding JSON")
-        }
+        self.data = self.initReadFileJSON(from: self.pathCurrency)
+        self.nameCurrency = self.initReadFileJSON(from: self.pathCurrencyNames) ?? []
         prepareCells()
     }
     
     // MARK: -
     // MARK: Methods
+    
+    private func initReadFileJSON<T: Decodable>(from path: String) -> T? {
+        let text = self.pathToText(inputString: path)
+        let decoder = JSONDecoder()
+        do {
+            return try decoder.decode(T.self, from: text.data(using: .utf8)!)
+        } catch {
+            print("error in decoding JSON")
+            return nil
+        }
+    }
     
     private func pathToText(inputString str: String) -> String{
         guard let path = Bundle.main.path(forResource: "\(str)", ofType: "json") else {
@@ -68,15 +67,14 @@ class CurrencyModel {
     }
     
     private func preparePBcells() {
-        
-        if self.data == nil {
+        guard self.data != nil else {
             print("there is no data in preparePBcells()!!!")
             return
         }
-        let filteredData = self.data?.exchangeRate.filter{ currency in
+        let filteredData = self.data?.exchangeRate.filter { currency in
             return (currency.purchaseRate != nil) && (currency.currency != nil)
         }
-        if filteredData == nil {
+        guard filteredData != nil else {
             print("there is no filteredData in  preparePBcells()")
             return
         }
@@ -91,15 +89,14 @@ class CurrencyModel {
     }
     
     private func prepareNBUCells() {
-        
-        if self.data == nil {
+        guard self.data != nil else {
             print("there is no data in preparePBcells()!!!")
             return
         }
         let filteredData = self.data?.exchangeRate.filter{ currency in
             return (currency.currency != nil)
         }
-        if filteredData == nil {
+        guard filteredData != nil else {
             print("there is no filteredData in  prepareNBUcells()")
             return
         }
@@ -111,14 +108,14 @@ class CurrencyModel {
             }.first?.name ?? "Unknown currency"
             var count = 1
             var value = currency.purchaseRateNB
-            while value < 10 {
+            while value < 1 {
                 value = value * 10
                 count = count * 10
             }
             let cell: CellNBU = CellNBU(currencyName: currencyName,
                             currency: curAtr,
                             value: "\(value)",
-                            count: "\(count) UAH",
+                            count: "\(count) \(curAtr)",
                             jumpTo: nil)
             self.dataNBUCells.append(cell)
         }
@@ -139,31 +136,34 @@ class CurrencyModel {
     }
     
     public func reloadData(on date: Date, refresh: @escaping ()->()) {
+            self.refreshSelfFromHTTP (at: date)
+            refresh()
+        }
+    
+    
+    private func refreshSelfFromHTTP (at date: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let dateString = formatter.string(from: date)
-        Alamofire.request("https://api.privatbank.ua/p24api/exchange_rates", method: .get, parameters: ["json" : "", "date" : dateString]).responseString{ [weak self] response in
-            guard let this = self else {
-                return
-            }
-            switch response.result {
-            case .success:
-                guard let rawJSON = response.value else {
-                    return
-                }                
-                let decoderNames = JSONDecoder()
-                do {
-                    this.data = try decoderNames.decode(CurrenciesData.self, from: rawJSON.data(using: .utf8)!)
-                } catch {
-                    print("error in decoding JSON")
-                }
+        Alamofire.request(
+            "https://api.privatbank.ua/p24api/exchange_rates",
+                          method: .get,
+                          parameters: ["json" : "", "date" : dateString])
+            .responseString{ [weak self] response in
+                guard let this = self else { return }
+                switch response.result {
+                case .success:
+                    guard let rawJSON = response.value else { return }
+                    let decoderNames = JSONDecoder()
+                    do {
+                        this.data = try decoderNames.decode(CurrenciesData.self, from: rawJSON.data(using: .utf8)!)
+                    } catch {
+                        print("error in decoding JSON")
+                    }
                 this.prepareCells()
-                refresh()
             case .failure:
                 print(response)
             }
-            
         }
-        
     }
 }

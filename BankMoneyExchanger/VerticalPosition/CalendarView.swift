@@ -11,37 +11,20 @@ import SnapKit
 
 class CalendarView: UIView {
 
+    // MARK: -
+    // MARK: Properties
+    
     public var calendarButton: UIButton?
     public var dateLabel: UILabel?
     
-    // public var hello: String = "hello"
+    // MARK: -
+    // MARK: Init and Deinit
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let image = UIImage(imageLiteralResourceName: "calendar-1_32")
-        self.calendarButton = UIButton()
-        self.calendarButton?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-        self.calendarButton?.setImage(image, for: .normal)
-        //self.calendarButton.addTarget(self, action: #selector(onDataPick), for: .touchDown)
-        self.dateLabel = UILabel()
-        self.dateLabel?.attributedText = NSAttributedString(string: "10.07.2019", attributes:
-            [.underlineStyle: NSUnderlineStyle.single.rawValue])
-        //self.dateLabel?.text = "10.07.2019"
-        self.dateLabel?.textColor = colorGoldFont
-        self.dateLabel?.frame = CGRect(x: 0,y: 0,width: 50,height: 50)
-        if self.dateLabel != nil {
-            self.addSubview(self.dateLabel!)
-        }
-        if self.calendarButton != nil {
-            self.addSubview(self.calendarButton!)
-        }
+        self.initCalendarIco()
+        self.initDateLabel()
     }
-    
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-    }
-    //*/
     
     override func layoutSubviews() {
         if self.dateLabel != nil {
@@ -60,5 +43,28 @@ class CalendarView: UIView {
         }
     }
     
+    // MARK: -
+    // MARK: Methods
+    
+    private func initCalendarIco() {
+        let image = UIImage(imageLiteralResourceName: "calendar-1_32")
+        self.calendarButton = UIButton()
+        self.calendarButton?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        self.calendarButton?.setImage(image, for: .normal)
+        if self.calendarButton != nil {
+            self.addSubview(self.calendarButton!)
+        }
+    }
+    
+    private func initDateLabel() {
+        self.dateLabel = UILabel()
+        self.dateLabel?.attributedText = NSAttributedString(string: "10.07.2019", attributes:
+            [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        self.dateLabel?.textColor = colorGoldFont
+        self.dateLabel?.frame = CGRect(x: 0,y: 0,width: 50,height: 50)
+        if self.dateLabel != nil {
+            self.addSubview(self.dateLabel!)
+        }
+    }
 
 }
