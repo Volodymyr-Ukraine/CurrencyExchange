@@ -30,6 +30,7 @@
 		F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BDF22D9CB1400DBD2BA /* Styles.swift */; };
 		F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE122D9ECB700DBD2BA /* Optionals.swift */; };
 		F5213BE722DA0E6E00DBD2BA /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */; };
+		F5C2A13E22E49F140062AF9B /* DataObtainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2A13D22E49F130062AF9B /* DataObtainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		F5213BDF22D9CB1400DBD2BA /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		F5213BE122D9ECB700DBD2BA /* Optionals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optionals.swift; sourceTree = "<group>"; };
 		F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F5C2A13D22E49F130062AF9B /* DataObtainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObtainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				F5213BDC22D9091200DBD2BA /* Structures */,
 				F5213BDE22D9094100DBD2BA /* RawData */,
 				F5206C1A22D6F3CE00FA3E6E /* CurrencyModel.swift */,
+				F5C2A13D22E49F130062AF9B /* DataObtainer.swift */,
 				F5206C2022D7078200FA3E6E /* DecoderJSON.swift */,
 			);
 			path = CurrenciesData;
@@ -330,6 +333,7 @@
 				F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */,
 				F5206C3122D7CB5E00FA3E6E /* NBUCell.swift in Sources */,
 				F5213BE722DA0E6E00DBD2BA /* CalendarView.swift in Sources */,
+				F5C2A13E22E49F140062AF9B /* DataObtainer.swift in Sources */,
 				F5206C2E22D78ADD00FA3E6E /* CurrencyName.swift in Sources */,
 				F5206BFC22D66EB800FA3E6E /* AppDelegate.swift in Sources */,
 			);

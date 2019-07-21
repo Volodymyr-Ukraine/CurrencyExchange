@@ -33,26 +33,28 @@ class CurrencyModel {
     public var nameCurrency: [CurrencyName] = []
     private let pathCurrency = "CurrensyRawJSON"
     private let pathCurrencyNames = "CurrencyNamesRuJSON"
+    private let httpRequestPath = "https://api.privatbank.ua/p24api/exchange_rates"
+    private var obtainerJSON = DataObtainer()
     
     // MARK: -
     // MARK: Init
     
     init() {
-        self.data = self.initReadFileJSON(from: self.pathCurrency)
-        self.nameCurrency = self.initReadFileJSON(from: self.pathCurrencyNames) ?? []
+        self.data = self.obtainerJSON.readFileJSON(from: self.pathCurrency)
+        self.nameCurrency = self.obtainerJSON.readFileJSON(from: self.pathCurrencyNames) ?? []
         prepareCells()
     }
     
     // MARK: -
     // MARK: Methods
     
-    private func initReadFileJSON<T: Decodable>(from path: String) -> T? {
+   /* private func initReadFileJSON<T: Decodable>(from path: String) -> T? {
         let text = self.pathToText(inputString: path)
         let decoder = JSONDecoder()
         do {
             return try decoder.decode(T.self, from: text.data(using: .utf8)!)
         } catch {
-            print("error in decoding JSON")
+            print("error in decoding JSON file")
             return nil
         }
     }
@@ -65,7 +67,7 @@ class CurrencyModel {
         let expandedPath = URL(fileURLWithPath: path)
         return try! String(contentsOf: expandedPath)
     }
-    
+    */
     private func preparePBcells() {
         guard self.data != nil else {
             print("there is no data in preparePBcells()!!!")
@@ -145,25 +147,12 @@ class CurrencyModel {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let dateString = formatter.string(from: date)
-        Alamofire.request(
-            "https://api.privatbank.ua/p24api/exchange_rates",
-                          method: .get,
-                          parameters: ["json" : "", "date" : dateString])
-            .responseString{ [weak self] response in
-                guard let this = self else { return }
-                switch response.result {
-                case .success:
-                    guard let rawJSON = response.value else { return }
-                    let decoderNames = JSONDecoder()
-                    do {
-                        this.data = try decoderNames.decode(CurrenciesData.self, from: rawJSON.data(using: .utf8)!)
-                    } catch {
-                        print("error in decoding JSON")
-                    }
+        self.obtainerJSON.readHttpData(
+            site: self.httpRequestPath,
+            at: dateString){[weak self] newData in
+                guard let this = self else {return}
+                this.data = newData
                 this.prepareCells()
-            case .failure:
-                print(response)
-            }
         }
     }
 }

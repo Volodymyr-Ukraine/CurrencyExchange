@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/VerticalPosition/VerticalViewController.swift"
-            timestampString = "585351857.850544"
+            timestampString = "585427618.767097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/VerticalPosition/VerticalViewController.swift"
-            timestampString = "585351857.850684"
+            timestampString = "585427618.767239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/VerticalPosition/VerticalViewController.swift"
-            timestampString = "585351857.85074"
+            timestampString = "585427618.767287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/VerticalPosition/VerticalViewController.swift"
-            timestampString = "585351857.8508151"
+            timestampString = "585427618.767391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/VerticalPosition/VerticalViewController.swift"
-            timestampString = "585351857.850872"
+            timestampString = "585427618.767433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/VerticalPosition/VerticalViewController.swift"
-            timestampString = "585351857.8509901"
+            timestampString = "585427618.767724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
@@ -122,12 +122,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BankMoneyExchanger/CurrenciesData/CurrencyModel.swift"
-            timestampString = "585351857.851038"
+            timestampString = "585427618.7678241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BankMoneyExchanger/CurrenciesData/DataObtainer.swift"
+            timestampString = "585427618.767907"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "readHttpData(site:at:toDO:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BankMoneyExchanger/CurrenciesData/DataObtainer.swift"
+            timestampString = "585427618.768644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "readHttpData(site:at:toDO:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

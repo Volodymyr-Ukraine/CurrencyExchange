@@ -10,7 +10,7 @@ import Foundation
 
 struct CurrenciesData: Decodable {
     public var date: String
-    private var bank: String
+    public var bank: String
     var baseCurrency: Int
     var baseCurrencyLit: String
     var exchangeRate: [CurrencyData]
