@@ -77,5 +77,4 @@ class DataObtainer {
         let expandedPath = URL(fileURLWithPath: path)
         return try! String(contentsOf: expandedPath)
     }
-    
 }

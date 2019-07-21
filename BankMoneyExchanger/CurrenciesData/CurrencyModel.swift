@@ -11,6 +11,17 @@ import SwiftyJSON
 import Alamofire
 
 class CurrencyModel {
+    
+    // MARK: -
+    // MARK: Constants
+    
+    private let pathCurrency = "CurrensyRawJSON"
+    private let pathCurrencyNames = "CurrencyNamesRuJSON"
+    private let httpRequestPath = "https://api.privatbank.ua/p24api/exchange_rates"
+    
+    // MARK: -
+    // MARK: Internal Structures
+    
     struct CellPB {
         public var currency: String
         public var buying: String
@@ -24,6 +35,7 @@ class CurrencyModel {
         public var count: String
         public var jumpTo: Int?
     }
+    
     // MARK: -
     // MARK: Properties
     
@@ -31,9 +43,6 @@ class CurrencyModel {
     public var dataPBCells: [CellPB] = []
     public var dataNBUCells: [CellNBU] = []
     public var nameCurrency: [CurrencyName] = []
-    private let pathCurrency = "CurrensyRawJSON"
-    private let pathCurrencyNames = "CurrencyNamesRuJSON"
-    private let httpRequestPath = "https://api.privatbank.ua/p24api/exchange_rates"
     private var obtainerJSON = DataObtainer()
     
     // MARK: -
@@ -48,26 +57,6 @@ class CurrencyModel {
     // MARK: -
     // MARK: Methods
     
-   /* private func initReadFileJSON<T: Decodable>(from path: String) -> T? {
-        let text = self.pathToText(inputString: path)
-        let decoder = JSONDecoder()
-        do {
-            return try decoder.decode(T.self, from: text.data(using: .utf8)!)
-        } catch {
-            print("error in decoding JSON file")
-            return nil
-        }
-    }
-    
-    private func pathToText(inputString str: String) -> String{
-        guard let path = Bundle.main.path(forResource: "\(str)", ofType: "json") else {
-            print("File JSON not found")
-            return ""
-        }
-        let expandedPath = URL(fileURLWithPath: path)
-        return try! String(contentsOf: expandedPath)
-    }
-    */
     private func preparePBcells() {
         guard self.data != nil else {
             print("there is no data in preparePBcells()!!!")
@@ -141,7 +130,6 @@ class CurrencyModel {
             self.refreshSelfFromHTTP (at: date)
             refresh()
         }
-    
     
     private func refreshSelfFromHTTP (at date: Date) {
         let formatter = DateFormatter()
