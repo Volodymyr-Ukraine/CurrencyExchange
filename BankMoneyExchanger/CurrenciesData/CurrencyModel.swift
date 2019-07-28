@@ -51,7 +51,7 @@ class CurrencyModel {
     init() {
         self.data = self.obtainerJSON.readFileJSON(from: self.pathCurrency)
         self.nameCurrency = self.obtainerJSON.readFileJSON(from: self.pathCurrencyNames) ?? []
-        prepareCells()
+        self.prepareCells()
     }
     
     // MARK: -
@@ -62,15 +62,15 @@ class CurrencyModel {
             print("there is no data in preparePBcells()!!!")
             return
         }
-        let filteredData = self.data?.exchangeRate.filter { currency in
+        guard let filteredData = (self.data?.exchangeRate.filter { currency in
             return (currency.purchaseRate != nil) && (currency.currency != nil)
-        }
-        guard filteredData != nil else {
+        }) else {
             print("there is no filteredData in  preparePBcells()")
             return
         }
+        
         self.dataPBCells = []
-        filteredData?.forEach{ currency in
+        filteredData.forEach{ currency in
             let cell: CellPB = CellPB(currency: currency.currency ?? "!!!",
                     buying: "\(currency.purchaseRate ?? 0)",
                     selling: "\(currency.saleRate ?? 0)",
@@ -84,15 +84,14 @@ class CurrencyModel {
             print("there is no data in preparePBcells()!!!")
             return
         }
-        let filteredData = self.data?.exchangeRate.filter{ currency in
+        guard let filteredData = (self.data?.exchangeRate.filter{ currency in
             return (currency.currency != nil)
-        }
-        guard filteredData != nil else {
+        }) else {
             print("there is no filteredData in  prepareNBUcells()")
             return
         }
         self.dataNBUCells = []
-        filteredData?.forEach{ currency in
+        filteredData.forEach{ currency in
             let curAtr = currency.currency ?? " "
             let currencyName: String = self.nameCurrency.filter{ curr in
                 return curr.attr == curAtr
@@ -113,9 +112,9 @@ class CurrencyModel {
     }
     
     private func prepareCells() {
-        preparePBcells()
-        prepareNBUCells()
-        dataPBCells.enumerated().forEach{ (n, data) in
+        self.preparePBcells()
+        self.prepareNBUCells()
+        self.dataPBCells.enumerated().forEach{ (n, data) in
             let indexCellNBU = dataNBUCells.firstIndex{ dataNBU in
                 return dataNBU.currency == data.currency
             }

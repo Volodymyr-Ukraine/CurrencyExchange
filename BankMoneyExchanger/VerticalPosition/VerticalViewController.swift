@@ -128,27 +128,27 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewForce = self.view as? VerticalView,
-              let model = self.model
-            else { return }
+        //guard let viewForce = self.view as? VerticalView,
+        //       let model = self.model
+         //   else { return }
+        guard let tableNBU = self.viewFormated?.currencyNBUTable
+        else { return }
         
         if tableView == self.viewFormated?.currencyPBTable {
-            guard indexPath.item < model.dataPBCells.count,
-                  let cellJump = model.dataPBCells[indexPath.item].jumpTo,
-                  let tablePB = self.viewFormated?.currencyNBUTable
-                else { return }
-            tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
+            guard indexPath.item < (self.model?.dataPBCells.count ?? 0),
+                  let cellJump = self.model?.dataPBCells[indexPath.item].jumpTo
+            else { return }
+                
+            tableNBU.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
         if tableView == self.viewFormated?.currencyNBUTable {
-            guard indexPath.item < model.dataNBUCells.count,
+            guard indexPath.item < (self.model?.dataNBUCells.count ?? 0),
                   let tablePB = self.viewFormated?.currencyPBTable
                 else { return }
             
-            if let cellJump = model.dataNBUCells[indexPath.item].jumpTo {
+            if let cellJump = self.model?.dataNBUCells[indexPath.item].jumpTo {
                 tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
             } else {
-                guard let tableNBU = viewForce.currencyNBUTable
-                    else { return }
                 tableNBU.deselectRow(at: IndexPath(item: indexPath.item, section: 0), animated: true)
                 tablePB.selectRow(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .none)
                 tablePB.deselectRow(at:  IndexPath(item: 0, section: 0), animated: false)

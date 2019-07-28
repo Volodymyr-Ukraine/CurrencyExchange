@@ -29,7 +29,6 @@
 		F5213BE022D9CB1400DBD2BA /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BDF22D9CB1400DBD2BA /* Styles.swift */; };
 		F5213BE222D9ECB700DBD2BA /* Optionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE122D9ECB700DBD2BA /* Optionals.swift */; };
 		F5213BE722DA0E6E00DBD2BA /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */; };
-		F527D37522ECDC90007480BB /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D37422ECDC90007480BB /* UITableView.swift */; };
 		F5C2A13E22E49F140062AF9B /* DataObtainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2A13D22E49F130062AF9B /* DataObtainer.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +59,6 @@
 		F5213BDF22D9CB1400DBD2BA /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		F5213BE122D9ECB700DBD2BA /* Optionals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optionals.swift; sourceTree = "<group>"; };
 		F5213BE522DA0E6D00DBD2BA /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		F527D37422ECDC90007480BB /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		F5C2A13D22E49F130062AF9B /* DataObtainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObtainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				F5213BE122D9ECB700DBD2BA /* Optionals.swift */,
-				F527D37422ECDC90007480BB /* UITableView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -323,7 +320,6 @@
 			files = (
 				F5206C3F22D8371600FA3E6E /* CalendarViewController.swift in Sources */,
 				F5206C1B22D6F3CE00FA3E6E /* CurrencyModel.swift in Sources */,
-				F527D37522ECDC90007480BB /* UITableView.swift in Sources */,
 				F5206C1F22D700A800FA3E6E /* CurrenciesData.swift in Sources */,
 				F5206C1D22D6FF3600FA3E6E /* CurrencyData.swift in Sources */,
 				F5206C1122D6EBBE00FA3E6E /* VerticalViewController.swift in Sources */,

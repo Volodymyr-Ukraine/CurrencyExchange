@@ -16,9 +16,7 @@ class DataObtainer {
     // MARK: Properties
     
     public var readedData : InputJSON? = nil
-    
     private var parameters: [String: String]
-    
     
     // MARK: -
     // MARK: Init and Deinit
@@ -41,7 +39,7 @@ class DataObtainer {
         }
     }
     
-    public func readHttpData(site: String, at dateString: String, toDO: @escaping (InputJSON) -> () ) {
+    public func readHttpData(site: String, at dateString: String, toDo: @escaping (InputJSON) -> () ) {
         self.parameters["date"] = dateString
         Alamofire.request(site,
                           method: .get,
@@ -58,7 +56,7 @@ class DataObtainer {
                         print("error in decoding JSON")
                     }
                     guard let newData = this.readedData else {return}
-                    toDO(newData)
+                    toDo(newData)
                 case .failure:
                     print(response)
                 }
