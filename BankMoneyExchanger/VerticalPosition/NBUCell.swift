@@ -27,19 +27,13 @@ class NBUCell: UITableViewCell {
     // MARK: -
     // MARK: Methods
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    /*override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
+    } // */
     
     public func changeData(_ currency: String, _ value: String, _ count: String) {
-        if let cur = self.currencyNameLabel {
-            cur.text = currency
-        }
-        if let val = self.valueLabel {
-            val.text = value
-        }
-        if let cnt = self.countLabel {
-            cnt.text = count
-        }
+        self.currencyNameLabel?.text = currency
+        self.valueLabel?.text = value
+        self.countLabel?.text = count
     }
 }

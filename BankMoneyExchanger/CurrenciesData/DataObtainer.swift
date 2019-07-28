@@ -24,7 +24,7 @@ class DataObtainer {
     // MARK: Init and Deinit
     
     init() {
-        self.parameters = ["json" : "", "date" : "10.07.2019"]
+        self.parameters = ["json" : "", "date" : ""]
     }
     
     // MARK: -
@@ -34,7 +34,7 @@ class DataObtainer {
         let text = self.pathToText(inputString: path)
         let decoder = JSONDecoder()
         do {
-            return try decoder.decode(T.self, from: text.data(using: .utf8)!)
+            return try decoder.decode(T.self, from: text.data(using: .utf8) ?? Data())
         } catch {
             print("error in decoding JSON file")
             return nil

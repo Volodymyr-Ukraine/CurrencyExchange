@@ -20,9 +20,9 @@ class PBCell: UITableViewCell {
     // MARK: -
     // MARK: Init and Deinit
     
-    required init?(coder aDecoder: NSCoder) {
+    /*required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
+    } // */
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,20 +31,14 @@ class PBCell: UITableViewCell {
     // MARK: -
     // MARK: Methods
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    /*override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
+    } // */
     
     public func changeData(_ currency: String, _ buying: String, _ selling: String) {
-        if let cur = self.currencyLabel {
-            cur.text = currency
-        }
-        if let buy = self.buyingLabel {
-            buy.text = buying
-        }
-        if let sel = self.sellingLabel {
-            sel.text = selling
-        }
+        self.currencyLabel?.text = currency
+        self.buyingLabel?.text = buying
+        self.sellingLabel?.text = selling
     }
     
 }

@@ -12,12 +12,25 @@ import SnapKit
 class VerticalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: -
+    // MARK: Constants and Constraints
+    
+    struct constants {
+        static let tablePBCellHeight: CGFloat = 50
+        static let tableNBUCellHeight: CGFloat = 45
+    }
+    
+    // MARK: -
     // MARK: Properties
     
     private var model: CurrencyModel?
+    private var viewFormated: VerticalView? {
+        get {
+            return self.view as? VerticalView
+        }
+    }
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         get {
-            return UIInterfaceOrientationMask.all;
+            return UIInterfaceOrientationMask.all
         }
     }
 
@@ -26,41 +39,36 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.model = CurrencyModel()
-        guard let viewForced = self.view as? VerticalView
+        let _ = self.unwrapOrInitModel()
+        guard let viewForced = self.viewFormated
             else {
                 print("Error in init View")
                 return
         }
-        initTables(viewForced: viewForced)
-        initCalendar(viewForced: viewForced)
+        self.initTables(viewForced: viewForced)
+        self.initCalendar(viewForced: viewForced)
     }
     
     override func viewWillLayoutSubviews() {
-        guard let viewForced = self.view as? VerticalView
-            else{ return }
-        viewForced.rotate()
+        self.viewFormated?.rotate()
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        guard let viewForced = self.view as? VerticalView
-            else { return }
-        viewForced.rotate()
+        self.viewFormated?.rotate()
     }
     
     private func initTables(viewForced: VerticalView){
-        if viewForced.currencyPBTable == nil {
-            viewForced.currencyPBTable = UITableView()
+        self.initTable(table: &viewForced.currencyPBTable, name: "PBCell")
+        self.initTable(table: &viewForced.currencyNBUTable, name: "NBUCell")
+    }
+    
+    private func initTable(table: inout UITableView?, name: String) {
+        if table == nil {
+            table = UITableView()
         }
-        if viewForced.currencyNBUTable == nil {
-            viewForced.currencyNBUTable = UITableView()
-        }
-        viewForced.currencyNBUTable?.delegate = self
-        viewForced.currencyPBTable?.delegate = self
-        viewForced.currencyPBTable?.dataSource = self
-        viewForced.currencyNBUTable?.dataSource = self
-        viewForced.currencyPBTable?.register(UINib(nibName: "PBCell", bundle: nil), forCellReuseIdentifier: "PBCell")
-        viewForced.currencyNBUTable?.register(UINib(nibName: "NBUCell", bundle: nil), forCellReuseIdentifier: "NBUCell")
+        table?.dataSource = self
+        table?.delegate = self
+        table?.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }
     
     private func initCalendar(viewForced: VerticalView){
@@ -76,48 +84,39 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Table View Delegats
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let model = self.model,
-              let viewForce = self.view as? VerticalView
-            else { return 1 }
-        if tableView == viewForce.currencyPBTable {
-            return model.dataPBCells.count
-        } else if tableView == viewForce.currencyNBUTable {
-            return model.dataNBUCells.count
+        if tableView == self.viewFormated?.currencyPBTable {
+            return self.model?.dataPBCells.count ?? 1
+        } else if tableView == self.viewFormated?.currencyNBUTable {
+            return self.model?.dataNBUCells.count ?? 1
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let viewForce = self.view as? VerticalView
-            else { return 1 }
-        if tableView == viewForce.currencyPBTable {
-            return 50
-        } else if tableView == viewForce.currencyNBUTable {
-            return 45
+        if tableView == self.viewFormated?.currencyPBTable {
+            return constants.tablePBCellHeight
+        } else if tableView == self.viewFormated?.currencyNBUTable {
+            return constants.tableNBUCellHeight
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let model = self.model,
-              let viewForce = self.view as? VerticalView
-            else { return UITableViewCell() }
-        
-        if tableView == viewForce.currencyPBTable {
-            guard indexPath.item < model.dataPBCells.count else {
+        if tableView == self.viewFormated?.currencyPBTable {
+            guard indexPath.item < (self.model?.dataPBCells.count ?? 0) else {
                 return UITableViewCell()
             }
-            let cellInfo = model.dataPBCells[indexPath.item]
+            let cellInfo = self.model?.dataPBCells[indexPath.item] ?? CurrencyModel.CellPB(currency: "-", buying: "-", selling: "-", jumpTo: nil)
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PBCell") as? PBCell {
                 cell.changeData(cellInfo.currency, cellInfo.buying, cellInfo.selling)
                 return cell
             }
-        } else if tableView == viewForce.currencyNBUTable {
-            guard indexPath.item < model.dataNBUCells.count else {
+        } else if tableView == self.viewFormated?.currencyNBUTable {
+            guard indexPath.item < (self.model?.dataNBUCells.count ?? 0) else {
                 return UITableViewCell()
             }
-            let cellInfo = model.dataNBUCells[indexPath.item]
+            let cellInfo = self.model?.dataNBUCells[indexPath.item] ?? CurrencyModel.CellNBU(currencyName: "-", currency: "-", value: "-", count: "-", jumpTo: nil)
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NBUCell") as? NBUCell {
                 cell.changeData(cellInfo.currencyName, cellInfo.value, cellInfo.count)
@@ -133,16 +132,16 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
               let model = self.model
             else { return }
         
-        if tableView == viewForce.currencyPBTable {
+        if tableView == self.viewFormated?.currencyPBTable {
             guard indexPath.item < model.dataPBCells.count,
                   let cellJump = model.dataPBCells[indexPath.item].jumpTo,
-                  let tablePB = viewForce.currencyNBUTable
+                  let tablePB = self.viewFormated?.currencyNBUTable
                 else { return }
             tablePB.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
         }
-        if tableView == viewForce.currencyNBUTable {
+        if tableView == self.viewFormated?.currencyNBUTable {
             guard indexPath.item < model.dataNBUCells.count,
-                  let tablePB = viewForce.currencyPBTable
+                  let tablePB = self.viewFormated?.currencyPBTable
                 else { return }
             
             if let cellJump = model.dataNBUCells[indexPath.item].jumpTo {
@@ -162,56 +161,55 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: Actions
     
     @IBAction func showOneCalendarButton(_ sender: Any) {
-        showCalendar()
+        self.showCalendar()
     }
     
     @IBAction func showOtherCalendarButton(_ sender: Any) {
-        showCalendar()
+        self.showCalendar()
     }
     
     @IBAction func hideCalendarButton(_ sender: Any) {
-        hideCalendar()
+        self.hideCalendar()
+    }
+    
+    // MARK: -
+    // MARK: Checking Methods
+    
+    private func unwrapOrInitModel() -> CurrencyModel {
+        if let model = self.model {
+            return model
+        } else {
+            self.model = CurrencyModel()
+            return self.model!
+        }
     }
 
     // MARK: -
     // MARK: Methods
     
-    public func showCalendar() {
-        guard let viewForced = self.view as? VerticalView,
-              let calendar = viewForced.calendar
-            else { return }
-        calendar.isHidden = false
-        calendar.backgroundColor = .white
-        
-        guard let hideButton = viewForced.hideCallendarButton
-            else { return }
-        hideButton.isHidden = false
+    private func showCalendar() {
+        self.viewFormated?.calendar?.isHidden = false
+        self.viewFormated?.calendar?.backgroundColor = .white
+        self.viewFormated?.hideCallendarButton?.isHidden = false
     }
     
-    public func hideCalendar() {
-        guard let viewForced = self.view as? VerticalView,
-              let calendar = viewForced.calendar
-            else { return }
-        calendar.isHidden = true
-        
-        guard let hideButton = viewForced.hideCallendarButton
-            else { return }
-        hideButton.isHidden = true
-        refreshDate(choosenDate: calendar.date)
+    private func hideCalendar() {
+        self.viewFormated?.calendar?.isHidden = true
+        self.viewFormated?.hideCallendarButton?.isHidden = true
+        if let date = self.viewFormated?.calendar?.date {
+            self.refreshDate(choosenDate: date)
+        }
     }
     
     private func refreshDate(choosenDate: Date) {
-        guard let viewForced = self.view as? VerticalView
-            else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        viewForced.setDates(date: formatter.string(from: choosenDate))
+        self.viewFormated?.setDates(date: formatter.string(from: choosenDate))
         
-        guard let model = self.model,
-              let tablePB = viewForced.currencyPBTable,
-              let tableNBU = viewForced.currencyNBUTable
+        guard let tablePB = self.viewFormated?.currencyPBTable,
+              let tableNBU = self.viewFormated?.currencyNBUTable
             else { return }
-        model.reloadData(on: choosenDate) {
+        unwrapOrInitModel().reloadData(on: choosenDate) {
                 tablePB.reloadData()
                 tableNBU.reloadData()
         }

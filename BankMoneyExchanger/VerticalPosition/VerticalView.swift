@@ -35,13 +35,8 @@ class VerticalView: UIView {
     // MARK: Methods
     
     public func setDates(date: String){
-        guard let oneCalendar = self.oneCalendarView,
-              let oneDate = oneCalendar.dateLabel,
-              let otherCalendar = self.otherCalendarView,
-              let otherDate = otherCalendar.dateLabel
-            else { return }
-        oneDate.text = date
-        otherDate.text = date
+        self.oneCalendarView?.dateLabel?.text = date
+        self.otherCalendarView?.dateLabel?.text = date
     }
     
     public func rotate(){
@@ -58,22 +53,18 @@ class VerticalView: UIView {
     
     private func makeHorisontal(nbuView: UIView, pbView: UIView, topView: UIView) {
         topView.snp.updateConstraints{ (make) -> () in
-            make.top.left.width.equalToSuperview()
+            make.top.left.right.width.equalToSuperview()
             make.height.equalTo(offsets.topHeight)
         }
         pbView.snp.remakeConstraints{ (make) -> () in
             make.top.equalTo(topView.snp.bottom).offset(0)
-            make.left.equalToSuperview()
+            make.left.bottom.equalToSuperview()
             make.right.equalTo(topView.snp.centerX)
-            make.bottom.equalToSuperview()
-            make.height.equalToSuperview().offset(-offsets.topHeight)
         }
         nbuView.snp.remakeConstraints{(make) -> () in
             make.top.equalTo(topView.snp.bottom).offset(0)
             make.left.equalTo(topView.snp.centerX)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalToSuperview().offset(-offsets.topHeight)
+            make.right.bottom.equalToSuperview()
         }
     }
     private func makeVertical(nbuView: UIView, pbView: UIView, topView: UIView) {
@@ -83,15 +74,12 @@ class VerticalView: UIView {
         }
         pbView.snp.remakeConstraints{ (make) -> () in
             make.top.equalTo(topView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().dividedBy(2)
         }
         nbuView.snp.remakeConstraints{(make) -> () in
             make.top.equalTo(pbView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
             make.height.equalToSuperview().dividedBy(2)
         }
     }
