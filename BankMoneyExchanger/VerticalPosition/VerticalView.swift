@@ -35,8 +35,10 @@ class VerticalView: UIView {
     // MARK: Methods
     
     public func setDates(date: String){
-        self.oneCalendarView?.dateLabel?.text = date
-        self.otherCalendarView?.dateLabel?.text = date
+        [self.oneCalendarView?.dateLabel,
+         self.otherCalendarView?.dateLabel].forEach{
+            $0?.text = date
+        }
     }
     
     public func rotate(){

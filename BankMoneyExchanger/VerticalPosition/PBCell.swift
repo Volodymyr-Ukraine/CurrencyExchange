@@ -20,25 +20,19 @@ class PBCell: UITableViewCell {
     // MARK: -
     // MARK: Init and Deinit
     
-    /*required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    } // */
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     // MARK: -
     // MARK: Methods
-
-    /*override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    } // */
     
     public func changeData(_ currency: String, _ buying: String, _ selling: String) {
-        self.currencyLabel?.text = currency
-        self.buyingLabel?.text = buying
-        self.sellingLabel?.text = selling
+        zip([self.currencyLabel, self.buyingLabel, self.sellingLabel],
+            [currency, buying, selling])
+            .forEach{ (label, info) in
+                label?.text = info
+            }
     }
     
 }

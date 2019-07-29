@@ -17,6 +17,8 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     struct constants {
         static let tablePBCellHeight: CGFloat = 50
         static let tableNBUCellHeight: CGFloat = 45
+        static let day = 24*60*60
+        static let year = 365*day
     }
     
     // MARK: -
@@ -39,12 +41,13 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let _ = self.unwrapOrInitModel()
+        self.model = CurrencyModel()
         guard let viewForced = self.viewFormated
             else {
                 print("Error in init View")
                 return
         }
+        viewForced.setDates(date: self.model?.data?.date ?? "???")
         self.initTables(viewForced: viewForced)
         self.initCalendar(viewForced: viewForced)
     }
@@ -74,35 +77,33 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     private func initCalendar(viewForced: VerticalView){
         guard let calendar = viewForced.calendar
             else { return }
-        let day = 24*60*60
-        let year = 365*day
-        calendar.maximumDate = Date.init(timeIntervalSinceNow: TimeInterval(-day))
-        calendar.minimumDate = Date.init(timeIntervalSinceNow: TimeInterval(-4*year))
+        calendar.maximumDate = Date.init(timeIntervalSinceNow: TimeInterval(-constants.day))
+        calendar.minimumDate = Date.init(timeIntervalSinceNow: TimeInterval(-4*constants.year))
     }
     
     // MARK: -
     // MARK: Table View Delegats
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.viewFormated?.currencyPBTable {
+        if self.choosenPBTableView(tableView) {
             return self.model?.dataPBCells.count ?? 1
-        } else if tableView == self.viewFormated?.currencyNBUTable {
+        } else if self.choosenNBUTableView(tableView) {
             return self.model?.dataNBUCells.count ?? 1
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == self.viewFormated?.currencyPBTable {
+        if self.choosenPBTableView(tableView) {
             return constants.tablePBCellHeight
-        } else if tableView == self.viewFormated?.currencyNBUTable {
+        } else if self.choosenNBUTableView(tableView) {
             return constants.tableNBUCellHeight
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == self.viewFormated?.currencyPBTable {
+        if self.choosenPBTableView(tableView) {
             guard indexPath.item < (self.model?.dataPBCells.count ?? 0) else {
                 return UITableViewCell()
             }
@@ -112,7 +113,7 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
                 cell.changeData(cellInfo.currency, cellInfo.buying, cellInfo.selling)
                 return cell
             }
-        } else if tableView == self.viewFormated?.currencyNBUTable {
+        } else if self.choosenNBUTableView(tableView) {
             guard indexPath.item < (self.model?.dataNBUCells.count ?? 0) else {
                 return UITableViewCell()
             }
@@ -128,20 +129,18 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //guard let viewForce = self.view as? VerticalView,
-        //       let model = self.model
-         //   else { return }
+
         guard let tableNBU = self.viewFormated?.currencyNBUTable
         else { return }
         
-        if tableView == self.viewFormated?.currencyPBTable {
+        if self.choosenPBTableView(tableView) {
             guard indexPath.item < (self.model?.dataPBCells.count ?? 0),
                   let cellJump = self.model?.dataPBCells[indexPath.item].jumpTo
             else { return }
                 
             tableNBU.selectRow(at: IndexPath(item: cellJump, section: 0), animated: true, scrollPosition: .middle)
-        }
-        if tableView == self.viewFormated?.currencyNBUTable {
+        } else
+        if self.choosenNBUTableView(tableView) {
             guard indexPath.item < (self.model?.dataNBUCells.count ?? 0),
                   let tablePB = self.viewFormated?.currencyPBTable
                 else { return }
@@ -175,15 +174,14 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: -
     // MARK: Checking Methods
     
-    private func unwrapOrInitModel() -> CurrencyModel {
-        if let model = self.model {
-            return model
-        } else {
-            self.model = CurrencyModel()
-            return self.model!
-        }
+    private func choosenPBTableView(_ tableView: UITableView) -> Bool {
+        return tableView == self.viewFormated?.currencyPBTable
     }
-
+    
+    private func choosenNBUTableView(_ tableView: UITableView) -> Bool {
+        return tableView == self.viewFormated?.currencyNBUTable
+    }
+    
     // MARK: -
     // MARK: Methods
     
@@ -209,7 +207,7 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let tablePB = self.viewFormated?.currencyPBTable,
               let tableNBU = self.viewFormated?.currencyNBUTable
             else { return }
-        unwrapOrInitModel().reloadData(on: choosenDate) {
+        self.model?.reloadData(on: choosenDate) {
                 tablePB.reloadData()
                 tableNBU.reloadData()
         }

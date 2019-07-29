@@ -15,7 +15,7 @@ class CalendarView: UIView {
     // MARK: Properties
     
     public var calendarButton: UIButton?
-    public var dateLabel: UILabel?
+    public var dateLabel: UILabel = UILabel()
     
     // MARK: -
     // MARK: Init and Deinit
@@ -27,15 +27,13 @@ class CalendarView: UIView {
     }
     
     override func layoutSubviews() {
-        if self.dateLabel != nil {
-            self.dateLabel?.snp.makeConstraints{ (make) -> () in
+        self.dateLabel.snp.makeConstraints{ (make) -> () in
                 make.right.equalToSuperview().offset(-5)
                 make.centerY.equalToSuperview()
-            }
         }
         if self.calendarButton != nil {
             self.calendarButton?.snp.makeConstraints{ (make) -> Void in
-                make.right.equalTo(self.dateLabel?.snp.left ?? self.snp.left).offset(-5)
+                make.right.equalTo(self.dateLabel.snp.left).offset(-5)
                 make.centerY.equalToSuperview()
                 make.height.equalTo(24)
                 make.width.equalTo(24)
@@ -57,14 +55,11 @@ class CalendarView: UIView {
     }
     
     private func initDateLabel() {
-        self.dateLabel = UILabel()
-        self.dateLabel?.attributedText = NSAttributedString(string: "10.07.2019", attributes:
+        self.dateLabel.attributedText = NSAttributedString(string: "...", attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
-        self.dateLabel?.textColor = colorGoldFont
-        self.dateLabel?.frame = CGRect(x: 0,y: 0,width: 50,height: 50)
-        if self.dateLabel != nil {
-            self.addSubview(self.dateLabel!)
-        }
+        self.dateLabel.textColor = colorGoldFont
+        self.dateLabel.frame = CGRect(x: 0,y: 0,width: 50,height: 50)
+        self.addSubview(self.dateLabel)
     }
 
 }

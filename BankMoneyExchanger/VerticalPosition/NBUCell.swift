@@ -27,13 +27,11 @@ class NBUCell: UITableViewCell {
     // MARK: -
     // MARK: Methods
     
-    /*override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    } // */
-    
     public func changeData(_ currency: String, _ value: String, _ count: String) {
-        self.currencyNameLabel?.text = currency
-        self.valueLabel?.text = value
-        self.countLabel?.text = count
+        zip([self.currencyNameLabel, self.valueLabel, self.countLabel],
+            [currency, value, count])
+            .forEach{ (label, info) in
+                label?.text = info
+            }
     }
 }
