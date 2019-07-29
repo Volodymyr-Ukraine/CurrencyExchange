@@ -61,18 +61,21 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func initTables(viewForced: VerticalView){
-        self.initTable(table: &viewForced.currencyPBTable, name: "PBCell")
-        self.initTable(table: &viewForced.currencyNBUTable, name: "NBUCell")
+        if viewForced.currencyPBTable == nil {
+            viewForced.currencyPBTable = UITableView()
+        }
+        if viewForced.currencyNBUTable == nil {
+            viewForced.currencyNBUTable = UITableView()
+        }
+        zip([viewForced.currencyPBTable, viewForced.currencyNBUTable],
+            ["PBCell", "NBUCell"])
+            .forEach{ (table, name) in
+                table?.dataSource = self
+                table?.delegate = self
+                table?.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
+        }
     }
     
-    private func initTable(table: inout UITableView?, name: String) {
-        if table == nil {
-            table = UITableView()
-        }
-        table?.dataSource = self
-        table?.delegate = self
-        table?.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
-    }
     
     private func initCalendar(viewForced: VerticalView){
         guard let calendar = viewForced.calendar
