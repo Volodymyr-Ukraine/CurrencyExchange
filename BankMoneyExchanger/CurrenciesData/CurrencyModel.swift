@@ -14,7 +14,11 @@ class CurrencyModel {
     
     // MARK: -
     // MARK: Constants
-    
+
+    struct moneyConstants {
+        static let minimalValueInHrivnaForCurrency : Float = 1
+        static let currencyMultiplier = 10
+    }
     private let pathCurrency = "CurrensyRawJSON"
     private let pathCurrencyNames = "CurrencyNamesRuJSON"
     private let httpRequestPath = "https://api.privatbank.ua/p24api/exchange_rates"
@@ -57,12 +61,18 @@ class CurrencyModel {
     // MARK: -
     // MARK: Methods
     
-    private func preparePBcells() {
-        guard self.data != nil else {
-            print("there is no data in preparePBcells()!!!")
-            return
+    private func filteredDataArray(test: (CurrencyData) -> Bool) -> [CurrencyData]? {
+        return self.data?.exchangeRate.filter { currency in
+            return test(currency)
         }
-        guard let filteredData = (self.data?.exchangeRate.filter { currency in
+    }
+    
+    private func currencyAbbreviated(_ data: CurrencyData?) -> String {
+        return data?.currency ?? "!!!"
+    }
+    
+    private func preparePBCells() {
+        guard let filteredData = (self.filteredDataArray{ currency in
             return (currency.purchaseRate != nil) && (currency.currency != nil)
         }) else {
             print("there is no filteredData in  preparePBcells()")
@@ -71,7 +81,7 @@ class CurrencyModel {
         
         self.dataPBCells = []
         filteredData.forEach{ currency in
-            let cell: CellPB = CellPB(currency: currency.currency ?? "!!!",
+            let cell: CellPB = CellPB(currency: self.currencyAbbreviated(currency),
                     buying: "\(currency.purchaseRate ?? 0)",
                     selling: "\(currency.saleRate ?? 0)",
                     jumpTo: nil)
@@ -80,11 +90,7 @@ class CurrencyModel {
     }
     
     private func prepareNBUCells() {
-        guard self.data != nil else {
-            print("there is no data in preparePBcells()!!!")
-            return
-        }
-        guard let filteredData = (self.data?.exchangeRate.filter{ currency in
+        guard let filteredData = (self.filteredDataArray{ currency in
             return (currency.currency != nil)
         }) else {
             print("there is no filteredData in  prepareNBUcells()")
@@ -92,45 +98,51 @@ class CurrencyModel {
         }
         self.dataNBUCells = []
         filteredData.forEach{ currency in
-            let curAtr = currency.currency ?? " "
+            let curAbbr = self.currencyAbbreviated(currency)
             let currencyName: String = self.nameCurrency.filter{ curr in
-                return curr.attr == curAtr
+                return curr.attr == curAbbr
             }.first?.name ?? "Unknown currency"
             var count = 1
             var value = currency.purchaseRateNB
-            while value < 1 {
-                value = value * 10
-                count = count * 10
+            while value < moneyConstants.minimalValueInHrivnaForCurrency {
+                value = value * Float( moneyConstants.currencyMultiplier)
+                count = count * moneyConstants.currencyMultiplier
             }
             let cell: CellNBU = CellNBU(currencyName: currencyName,
-                            currency: curAtr,
+                            currency: curAbbr,
                             value: "\(value)",
-                            count: "\(count) \(curAtr)",
+                            count: "\(count) \(curAbbr)",
                             jumpTo: nil)
             self.dataNBUCells.append(cell)
         }
     }
     
     private func prepareCells() {
-        self.preparePBcells()
+        guard self.data != nil else {
+            print("there is no Data")
+            return
+        }
+        self.preparePBCells()
         self.prepareNBUCells()
-        self.dataPBCells.enumerated().forEach{ (n, data) in
-            let indexCellNBU = dataNBUCells.firstIndex{ dataNBU in
-                return dataNBU.currency == data.currency
-            }
-            self.dataPBCells[n].jumpTo = indexCellNBU
-            if indexCellNBU != nil {
-                self.dataNBUCells[indexCellNBU!].jumpTo = n
-            }
+        
+        let currenciesAbbr = self.dataPBCells.map{ data in
+            return data.currency
+        }
+        currenciesAbbr.forEach{ abbr in
+            guard let indexCellNBU = (self.dataNBUCells.firstIndex{
+                return $0.currency == abbr
+            }) else {return}
+            
+            guard let indexCellPB = (self.dataPBCells.firstIndex{
+                return $0.currency == abbr
+            }) else {return}
+            
+            self.dataNBUCells[indexCellNBU].jumpTo = indexCellPB
+            self.dataPBCells[indexCellPB].jumpTo = indexCellNBU
         }
     }
     
     public func reloadData(on date: Date, refresh: @escaping ()->()) {
-            self.refreshSelfFromHTTP (at: date)
-            refresh()
-        }
-    
-    private func refreshSelfFromHTTP (at date: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let dateString = formatter.string(from: date)
@@ -140,6 +152,8 @@ class CurrencyModel {
                 guard let this = self else {return}
                 this.data = newData
                 this.prepareCells()
+                refresh()
         }
     }
+    
 }

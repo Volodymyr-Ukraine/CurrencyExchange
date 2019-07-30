@@ -107,9 +107,6 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.choosenPBTableView(tableView) {
-            guard indexPath.item < (self.model?.dataPBCells.count ?? 0) else {
-                return UITableViewCell()
-            }
             let cellInfo = self.model?.dataPBCells[indexPath.item] ?? CurrencyModel.CellPB(currency: "-", buying: "-", selling: "-", jumpTo: nil)
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PBCell") as? PBCell {
@@ -117,9 +114,6 @@ class VerticalViewController: UIViewController, UITableViewDataSource, UITableVi
                 return cell
             }
         } else if self.choosenNBUTableView(tableView) {
-            guard indexPath.item < (self.model?.dataNBUCells.count ?? 0) else {
-                return UITableViewCell()
-            }
             let cellInfo = self.model?.dataNBUCells[indexPath.item] ?? CurrencyModel.CellNBU(currencyName: "-", currency: "-", value: "-", count: "-", jumpTo: nil)
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NBUCell") as? NBUCell {
